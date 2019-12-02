@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Conky Autostart
+Comment=Autostart the Conky display
+TryExec=start_conky.sh
+Exec=start_conky.sh
+Icon=
+Type=Application
+Categories=GNOME;GTK;System;Utility;
+StartupNotify=true
+X-Desktop-File-Install-Version=0.22
