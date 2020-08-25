@@ -1,0 +1,10 @@
+[/]
+appicon-margin=0
+appicon-padding=4
+available-monitors=[0]
+hotkeys-overlay-combo='TEMPORARILY'
+panel-element-positions='{"0":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
+panel-size=32
+show-appmenu=false
+trans-use-custom-gradient=true
+trans-use-custom-opacity=true
