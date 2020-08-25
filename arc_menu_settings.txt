@@ -1,0 +1,15 @@
+[/]
+button-icon-padding=10
+custom-menu-button-icon='/home/kali/git/linux_customizations/.face'
+custom-menu-button-icon-size=32.0
+dtp-dtd-state=[true, false]
+enable-large-icons=false
+enable-sub-menus=false
+menu-button-icon='Custom_Icon'
+menu-height=550
+menu-width=290
+pinned-app-list=['Firefox ESR', 'firefox-esr', 'firefox-esr.desktop', 'Terminal', 'utilities-terminal', 'org.gnome.Terminal.desktop', 'Arc Menu Settings', 'ArcMenu_ArcMenuIcon', 'gnome-extensions prefs arc-menu@linxgem33.com']
+recently-installed-apps=['terminator.desktop', 'ranger.desktop', 'wxHexEditor.desktop', 'zenmap.desktop', 'zenmap-root.desktop']
+right-panel-width=205
+separator-color='rgb(63,62,64)'
+vert-separator=true
