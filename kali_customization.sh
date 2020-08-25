@@ -12,13 +12,21 @@ declare red='\033[0;31m' # Red
 
 # Desktop environment check
 if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
-    echo -e "${red}! *****  ${yel}Please install the Gnome desktop environment.  ${red}*****${nc}"
-    exit
+    echo -e "${red}! *****  ${yel}Please install the Gnome desktop environment.  ${red}*****${nc}\n"
+    
+    while : ; do
+        read -n 1 -p "Do you want to install Gnome now? [y/n] " ans
+        case $ans in
+            [Yy]* ) sudo apt update; sudo apt install gnome -y; break;;
+            [Nn]* ) echo -e "\n\n${yel}# ${cyan}Exiting script...${nc}"; exit;;
+            * ) echo -e "\n${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}\n"
+        esac
+    done
 fi
 
 
 # Password reminder
-echo -e "${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
+echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
 read -n 1 -r -p "Press any key to continue..."
 echo -e "\n\n"
 
