@@ -72,3 +72,6 @@ Here's what the automated script does:
 ## Keyboard Shortcuts
 - <kbd>Super</kbd>+<kbd>t</kbd> - Open Terminator
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd> - Open Gnome System Monitor
+
+# Reasons
+This started as an idea due to setting up a new VM with everything took time. Sure, I could use the default settings and install things as I needed them, but it also presented a fun project for a real-world issue... Boom! Learning opportunity.
