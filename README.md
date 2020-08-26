@@ -10,6 +10,7 @@ Here's what the automated script does:
 2. Creates a ~/git directory with a symlink from /git -> ~/git for convenience
 3. Clones this repository for support dotfiles, etc to ~/git
 4. Installs Oh My Zsh with the Powerlevel10k theme, autosuggestions and syntax highlighting plugins
+    - Type `exit` after the Zsh shell loads to exit zsh and continue the script
 5. Apt installs a number of my commonly used packages
     - Along with Zenmap for occasionaly usage (Zenmap as Root application shortcut isn't currently working, but sudo -E zenmap does.)
 6. Git clones a number of my commonly used repos and installs/configures as needed
