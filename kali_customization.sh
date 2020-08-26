@@ -289,7 +289,7 @@ echo -e "${yel}###   Please REBOOT for some changes to take effect   ###${nc}\n\
 while : ; do
     read -n 1 -p "Do you want to reboot now? [y/n] " ans
     case $ans in
-        [Yy]* ) reboot;;
+        [Yy]* ) sudo reboot;;
         [Nn]* ) echo -e "\n\n"; break;;
         * ) echo -e "${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}"
     esac
