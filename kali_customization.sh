@@ -55,6 +55,11 @@ echo -e "\n\n"
 # Install Oh-My-Zsh and plugins
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
 if [ ! -d $HOME/.oh-my-zsh ]; then
+    # Have to manually exit zsh to continue
+    echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
+    read -n 1 -r -p "Press any key to continue..."
+    echo -e "\n\n"
+
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
