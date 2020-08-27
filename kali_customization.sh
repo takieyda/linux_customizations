@@ -17,7 +17,7 @@ if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
     while : ; do
         read -n 1 -p "Do you want to install Gnome now? [y/n] " ans
         case $ans in
-            [Yy]* ) sudo apt update; sudo apt install gnome -y; break;;
+            [Yy]* ) echo -e "\n"; sudo apt update; sudo apt install gnome -y; break;;
             [Nn]* ) echo -e "\n\n${yel}# ${cyan}Exiting script...${nc}"; exit;;
             * ) echo -e "\n${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}\n"
         esac
