@@ -168,7 +168,7 @@ echo -e "\n\n"
 
 # Evil-WinRM
 echo -e "${cyan}*****  Evil-WinRM installation  *****${nc}"
-sudo gem install evil-winrm
+sudo -E gem install evil-winrm
 echo -e "\n\n"
 
 
