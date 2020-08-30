@@ -210,6 +210,7 @@ echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
 #shopt -u dotglob
 #rm -rf $HOME/.git
 rsync -ax $githome/linux_customizations/ $HOME --exclude=.git
+sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
 chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/kali_wallpaper.png  # Set wallpaper
 
