@@ -1,6 +1,6 @@
 [global_config]
-  title_transmit_fg_color = "#bd93f9"
-  title_transmit_bg_color = "#282a36"
+  title_transmit_fg_color = "#FFFFFF"
+  title_transmit_bg_color = "#BD3FBF"
   title_receive_fg_color = "#8be9fd"
   title_receive_bg_color = "#282a36"
   title_inactive_fg_color = "#f8f8f2"
