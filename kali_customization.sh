@@ -94,6 +94,7 @@ sudo apt install \
     python3-argcomplete \
     python3-pip \
     ranger \
+    source-highlighting \
     terminator \
     vim-airline \
     wxhexeditor \
