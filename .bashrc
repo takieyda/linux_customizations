@@ -123,3 +123,7 @@ POWERLINE_BASH_SELECT=1
 
 # Add ~/.local/bin to $PATH to support AutoRecon installed by gem
 export PATH=$HOME/.local/bin:$PATH
+
+# Syntax highlighting using less command from the source-highlight package
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
