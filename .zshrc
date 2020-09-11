@@ -81,6 +81,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Syntax highlighting using less command from the source-highlight package
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
