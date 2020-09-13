@@ -73,7 +73,7 @@ echo -e "\n\n"
 # Apt installations
 echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "${yel}# ${grn}Performing Apt Update.${nc}"
-sudo apt update > /dev/null
+sudo apt update
 echo -e "${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     alien \
@@ -99,7 +99,7 @@ sudo apt install \
     vim-airline \
     wxhexeditor \
     xclip \
-    zaproxy -y > /dev/null
+    zaproxy -y
     #zenmap -y -qq  # Isn't currently in the repo
 
 # Install Zenmap
