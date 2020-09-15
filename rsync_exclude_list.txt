@@ -1,0 +1,6 @@
+rsync_exclude_list.txt
+.git/
+kali_customization.sh
+linux_customizations1.png
+linux_customizations2.png
+README.md
