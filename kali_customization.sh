@@ -1,4 +1,4 @@
-#!/usr/bin/env $SHELL
+#!/usr/bin/bash
 # Install customizations and apps
 
 
