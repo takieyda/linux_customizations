@@ -77,6 +77,7 @@ sudo apt update
 echo -e "${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     alien \
+    beep \
     bloodhound \
     cowsay \
     dconf-editor \
@@ -102,6 +103,11 @@ sudo apt install \
     xclip \
     zaproxy -y
     #zenmap -y -qq  # Isn't currently in the repo
+    
+# Setup beep command
+echo -e "\n${yel}# ${grn}Configuring and adding ${yel}`whoami` ${grn}to the beep user group.${nc}"
+sudo groupadd --system beep
+sudo usermod -aG beep `whoami`
 
 # Install Zenmap
 # ZenMap (as Root) shortcut doesn't seem to work, considering replacing it with sudo -E zenmap
