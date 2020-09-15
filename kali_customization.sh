@@ -97,6 +97,7 @@ sudo apt install \
     source-highlight \
     terminator \
     vim-airline \
+    vim-gtk3 \
     wxhexeditor \
     xclip \
     zaproxy -y
