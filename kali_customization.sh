@@ -4,30 +4,38 @@
 
 # Colors -- https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 declare cyan='\033[1;36m' # Light cyan
-declare nc='\033[0m'  # No color
-declare yel='\033[1;33m' # Yellow
-declare grn='\033[0;32m' # Green
-declare red='\033[0;31m' # Red
+declare nc='\033[0m'      # No color
+declare yel='\033[1;33m'  # Yellow
+declare grn='\033[0;32m'  # Green
+declare red='\033[0;31m'  # Red
+
+
+echo -e "${cyan}*************************************************"
+echo -e "**                                             **"
+echo -e "**       ${yel}Kali Linux Customization Script${cyan}       **"
+echo -e "**                                             **"
+echo -e "*************************************************${nc}\n"
+
+# Password reminder
+echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
+echo -e "\n\n"
 
 
 # Desktop environment check
+echo -e "${cyan}*****  Checking for the Gnome desktop environment.  *****${nc}\n"
 if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
-    echo -e "${red}! *****  ${yel}Please install the Gnome desktop environment.  ${red}*****${nc}\n"
+    echo -e "${red}! *****  ${cyan}Gnome not found. Most changes in this script are Gnome specific.  ${red}*****${nc}"
+	echo -e "${red}! *****           ${yel}Please install the Gnome desktop environment.            ${red}*****${nc}\n"
     
     while : ; do
-        read -n 1 -p "Do you want to install Gnome now? [y/n] " ans
+        read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
         case $ans in
-            [Yy]* ) echo -e "\n"; sudo apt update; sudo apt install gnome -y; break;;
-            [Nn]* ) echo -e "\n\n${yel}# ${cyan}Exiting script...${nc}"; exit;;
+            [Yy]*|"" ) echo -e "\n"; sudo apt update; sudo apt install gnome -y; break;;
+            [Nn]* ) echo -e "\n\n${yel}# ${cyan}Most changes in this script are Gnome specific. ${red}Exiting script...${nc}\n"; exit;;
             * ) echo -e "\n${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}\n"
         esac
     done
 fi
-
-
-# Password reminder
-echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
-read -n 1 -r -p "Press any key to continue..."
 echo -e "\n\n"
 
 
@@ -56,17 +64,18 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
 if [ ! -d $HOME/.oh-my-zsh ]; then
     # Have to manually exit zsh to continue
-    echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
-    read -n 1 -r -p "Press any key to continue..."
-    echo -e "\n\n"
+    # echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
+    # read -n 1 -r -p "Press any key to continue..."
+    #echo -e "\n\n"
 
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
     echo -e "${yel}# ${grn}Oh My Zsh already installed.${nc}"
 fi
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+sudo chsh --shell /usr/bin/zsh kali
 echo -e "\n\n"
 
 
@@ -74,7 +83,7 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "${yel}# ${grn}Performing Apt Update.${nc}"
 sudo apt update
-echo -e "${yel}# ${grn}Performing Apt Install.${nc}"
+echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     alien \
     beep \
@@ -102,7 +111,6 @@ sudo apt install \
     wxhexeditor \
     xclip \
     zaproxy -y
-    #zenmap -y -qq  # Isn't currently in the repo
     
 # Setup beep command
 echo -e "\n${yel}# ${grn}Configuring and adding ${yel}`whoami` ${grn}to the beep user group.${nc}"
@@ -114,11 +122,11 @@ sudo usermod -aG beep `whoami`
 echo -e "\n${yel}# ${grn}Installing Zenmap GUI.${nc}"
 if [ ! -f /usr/bin/zenmap ]; then
     wget "https://nmap.org/dist/zenmap-7.80-1.noarch.rpm" -O /tmp/zenmap.rpm
-    curdir=`pwd`
+    #curdir=`pwd`
     cd /tmp
     sudo alien zenmap.rpm -i
     rm /tmp/zenmap*
-    cd $curdir
+    cd - #$curdir
 else
     echo -e "${yel}# ${cyan}Zenmap already installed.${nc}"
 fi
@@ -155,7 +163,7 @@ done
 echo -e "\n${yel}# ${grn}Installing impacket.${nc}"
 cd $githome/impacket
 python3 -m pip install .
-cd $curdir  # Set at ln 74
+cd - #$curdir  # Set at ln 74
 
 #ShellPop
 echo -e "\n${yel}# ${grn}Installing ShellPop.${nc}"
@@ -163,7 +171,7 @@ cd $githome/ShellPop
 python -m pip install wheel
 python -m pip install -r requirements.txt
 sudo -E python setup.py install  # Will fail if CWD is not repo root directory
-cd $curdir
+cd - #$curdir
 echo -e "\n\n"
 
 
@@ -213,14 +221,12 @@ echo -e "\n\n"
 
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
-#shopt -s dotglob  # Prevents multiple copies due to .* expanding to include .. moving to previous dir
-#cp -r $githome/linux_customizations/* $HOME -v
-#shopt -u dotglob
-#rm -rf $HOME/.git
 rsync -ax --exclude-from=$githome/linux_customizations/rsync_exclude_list.txt $githome/linux_customizations/ $HOME
+mkdir -p $HOME/.local/share/backgrounds
+mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
 chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/kali_wallpaper.png  # Set wallpaper
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
 
 # Set Gnome Favorites
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop', 'kali-msfconsole.desktop', 'kali-burpsuite.desktop', 'cherrytree.desktop']"
@@ -253,12 +259,12 @@ gsettings set org.gnome.desktop.default-applications.terminal exec-arg "'-x'"
 
 # Automatic screen lock
 gsettings set org.gnome.desktop.screensaver lock-enabled "false"
-echo -e "\n\n"
+echo -e "\n"
 
 # Arc Menu and Dash to Panel customization -- https://developer.gnome.org/dconf/unstable/dconf-tool.html
-echo -e "${cyan}*****  Arc Menu customizations  *****${nc}"
+echo -e "${cyan}*****  Arc Menu customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/arc-menu/ < $HOME/arc_menu_settings.txt
-echo -e "${cyan}*****  Dash to Panel customizations  *****${nc}"
+echo -e "${cyan}*****  Dash to Panel customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/dash-to-panel/ < $HOME/dash_to_panel_settings.txt
 rm arc_menu_settings.txt dash_to_panel_settings.txt
 
@@ -270,7 +276,7 @@ src=`head -n -3 $file`
 ext='    },
     "Extensions": {
       "Install": [
-        "https://addons.mozilla.org/firefox/downloads/file/33echo43599/cookie_quick_manager-0.5rc2-an+fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/3343599/cookie_quick_manager-0.5rc2-an+fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/3616824/foxyproxy_standard-7.5.1-an+fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/3398269/max_hackbar-4.7-fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
@@ -301,9 +307,9 @@ echo -e "${yel}###   Please REBOOT for some changes to take effect   ###${nc}\n\
 
 
 while : ; do
-    read -n 1 -p "Do you want to reboot now? [y/n] " ans
+    read -n 1 -p "Do you want to reboot now? [Y/n] " ans
     case $ans in
-        [Yy]* ) echo -e "\n"; sudo reboot;;
+        [Yy]*|"" ) echo -e "\n"; sudo reboot;;
         [Nn]* ) echo -e "\n\n"; break;;
         * ) echo -e "${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}"
     esac
