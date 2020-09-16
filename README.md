@@ -24,6 +24,7 @@ Here's what the automated script does:
 ### Apt packages
 - gnome
 - alien
+- beep
 - bloodhound
 - cowsay
 - dconf-editor
@@ -41,8 +42,10 @@ Here's what the automated script does:
 - python3-argcomplete
 - python3-pip
 - ranger
+- source-highlight
 - terminator
 - vim-airline
+- vim-gtk3
 - wxhexeditor
 - xclip
 - zaproxy
