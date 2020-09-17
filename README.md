@@ -92,9 +92,9 @@ Here's what I found so far:
 1. Clean install and fresh VM everything worked, copy/paste and drag and drop in and out of VM, dynamic resolution resizing.
 2. After the script, in Gnome Wayland clipboard copy/paste, drag and drop, and resizing were broken.
 3. Switching to X11 from the login screen allowed for copy/paste and window resizing, but not drag and drop. The newer VMs default to Wayland.
-    - This functionality was likely enabled by the virtualbox-guest-x11 package, which is now installed in the VM though it wasn't previously and I did not specifically install it that I remember. Perhaps, an apt update and apt full-upgrade installed it and I didn't notice.
+    - This functionality was likely enabled by the `virtualbox-guest-x11` package, which is now installed in the VM though it wasn't previously and I did not specifically install it that I remember. Perhaps, an apt update and apt full-upgrade installed it and I didn't notice.
     - Switching back to Wayland, nothing works again.
 4. Inserting the Guest Additions CD images (from VirtualBox Devices menu) and running that in Wayland allowed for copy/paste and window resizing to work, drag and drop still didn't work.
-    - This required modifying the /etc/fstab file, removing 'noauto' and adding 'exec' to the line for the cdrom.
+    - This required modifying the `/etc/fstab` file, removing `noauto` and adding `exec` to the line for the cdrom.
 
 I wasn't able to get drag and drop to work no matter what I tried, unfortunately. Copy/paste and window resizing is working though.
