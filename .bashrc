@@ -128,11 +128,13 @@ export PATH=$HOME/.local/bin:$PATH
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
-# Man page colors, green mostly
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+# Man page colors, green mostly -- https://www.shellhacks.com/bash-colors/
+# XTerm 256 colors -- https://unix.stackexchange.com/questions/94498/what-causes-this-green-background-in-ls-output/94505#94505
+# XTerm prefix -- Foreground 38;5;## -- Background 38;5;##
+export LESS_TERMCAP_mb=$'\e[38;5;51m'    # Blink, cyan
+export LESS_TERMCAP_md=$'\e[38;5;51m'    # Bold start, cyan
+export LESS_TERMCAP_me=$'\e[0m'          # Bold, blink, underline stop
+export LESS_TERMCAP_so=$'\e[38;5;201m'   # Standout, highlight, magenta
+export LESS_TERMCAP_se=$'\e[0m'          # Standout stop
+export LESS_TERMCAP_us=$'\e[38;5;228;4m' # Underline, bold underline yellow
+export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
