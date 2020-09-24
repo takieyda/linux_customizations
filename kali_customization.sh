@@ -49,6 +49,7 @@ else
     echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
     ${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
     ${red}! ${cyan}fix this issue.${nc}"
+fi
 echo -e "\n\n"
 
 
