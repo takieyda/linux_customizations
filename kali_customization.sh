@@ -36,6 +36,19 @@ if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
         esac
     done
 fi
+
+echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
+if [ -f /etc/gdm3/daemon.conf ]; then
+    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
+    echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
+elif [ -f /etc/gdm/custom.conf ]; then
+    sudo -E sec -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
+    echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
+else
+    echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
+    echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
+    ${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
+    ${red}! ${cyan}fix this issue.${nc}"
 echo -e "\n\n"
 
 
