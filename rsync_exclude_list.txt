@@ -5,3 +5,4 @@ kali_customization.sh
 linux_customizations1.png
 linux_customizations2.png
 README.md
+server_customization.sh

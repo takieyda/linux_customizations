@@ -13,9 +13,14 @@ declare red='\033[0;31m'  # Red
 
 echo -e "${cyan}*************************************************"
 echo -e "**                                             **"
-echo -e "**       ${yel}Kali Linux Customization Script${cyan}       **"
+echo -e "**       ${yel}Server Linux Customization Script${cyan}       **"
 echo -e "**                                             **"
 echo -e "*************************************************${nc}\n"
+
+
+# Initial apt update
+echo -e "\n\n$${cyan}*****  Performing initial apt update  *****${nc}"
+sudo apt update
 
 # Password reminder
 echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
@@ -45,6 +50,9 @@ echo -e "\n\n"
 
 # Install Oh-My-Zsh and plugins
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
+if [ ! -f /bin/zsh ]; then
+    sudo apt install zsh
+ fi
 if [ ! -d $HOME/.oh-my-zsh ]; then
     # Have to manually exit zsh to continue
     # echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
@@ -64,8 +72,6 @@ echo -e "\n\n"
 
 # Apt installations
 echo -e "${cyan}*****  Apt installations  *****${nc}"
-echo -e "${yel}# ${grn}Performing Apt Update.${nc}"
-sudo apt update
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     neofetch \

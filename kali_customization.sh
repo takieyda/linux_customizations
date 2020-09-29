@@ -18,6 +18,12 @@ echo -e "**       ${yel}Kali Linux Customization Script${cyan}       **"
 echo -e "**                                             **"
 echo -e "*************************************************${nc}\n"
 
+
+# Initial apt update
+echo -e "\n\n$${cyan}*****  Performing initial apt update  *****${nc}"
+sudo apt update
+
+
 # Password reminder
 echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
 echo -e "\n\n"
@@ -32,7 +38,7 @@ if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
     while : ; do
         read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
         case $ans in
-            [Yy]*|"" ) echo -e "\n"; sudo apt update; sudo apt install gnome -y; break;;
+            [Yy]*|"" ) echo -e "\n"; sudo apt install gnome -y; break;;
             [Nn]* ) echo -e "\n\n${yel}# ${cyan}Most changes in this script are Gnome specific. ${red}Exiting script...${nc}\n"; exit;;
             * ) echo -e "\n${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}\n"
         esac
@@ -97,8 +103,6 @@ echo -e "\n\n"
 
 # Apt installations
 echo -e "${cyan}*****  Apt installations  *****${nc}"
-echo -e "${yel}# ${grn}Performing Apt Update.${nc}"
-sudo apt update
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     alien \
