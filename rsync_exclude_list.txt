@@ -1,4 +1,5 @@
 rsync_exclude_list.txt
+server_exclude_list.txt
 .git/
 kali_customization.sh
 linux_customizations1.png

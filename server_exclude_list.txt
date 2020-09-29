@@ -1,0 +1,17 @@
+rsync_exclude_list.txt
+server_exclude_list.txt
+.config/
+.conky/
+.git/
+.local/share/applications/
+.local/share/fonts/
+.themes/
+.face
+arc_menu_settings.txt
+dash_to_panel_settings.txt
+kali_customization.sh
+kali_wallpaper.png
+linux_customizations1.png
+linux_customizations2.png
+README.md
+server_customization.sh

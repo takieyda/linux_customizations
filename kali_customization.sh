@@ -1,5 +1,7 @@
 #!/bin/bash
-# Install customizations and apps
+# Install customizations and apps for Kali Linux
+# Knowing working for: 2020.3
+# Other versions are likely to work
 
 
 # Colors -- https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
