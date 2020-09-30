@@ -23,3 +23,6 @@ set showmatch    " Show matching (,{ when ),} is entered
 set ignorecase    " Case insensitive search
 
 set splitbelow splitright   " Split window either below or right of current pane
+
+packadd! dracula
+colorscheme dracula
