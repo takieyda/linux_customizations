@@ -18,9 +18,10 @@ echo -e "**                                             **"
 echo -e "*************************************************${nc}\n"
 
 
-# Initial apt update
-echo -e "\n\n$${cyan}*****  Performing initial apt update  *****${nc}"
+# Initial apt runs
+echo -e "\n\n${cyan}*****  Performing initial apt tasks  *****${nc}"
 sudo apt update
+sudo apt full-upgrade -y
 
 # Password reminder
 echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
@@ -84,7 +85,10 @@ sudo apt install \
     vim-airline \
     vim-gtk3 \
     xclip -y
-
+    
+# Vim Dracula theme download
+mkdir -p $HOME/.vim/pack/themes/start
+git clone https://github.com/dracula/vim.git dracula $HOME/.vim/pack/themes/start/
 
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
