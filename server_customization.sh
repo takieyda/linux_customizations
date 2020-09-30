@@ -52,7 +52,7 @@ echo -e "\n\n"
 # Install Oh-My-Zsh and plugins
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
 if [ ! -f /bin/zsh ]; then
-    sudo apt install zsh
+    sudo apt install zsh -y
  fi
 if [ ! -d $HOME/.oh-my-zsh ]; then
     # Have to manually exit zsh to continue
