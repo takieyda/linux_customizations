@@ -117,6 +117,7 @@ sudo apt install \
     gnome-shell-extension-proxyswitcher \
     gnome-shell-extensions \
     gnome-sushi \
+    gobuster \
     lolcat \
     neofetch \
     powerline \
