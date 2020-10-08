@@ -87,8 +87,8 @@ sudo apt install \
     xclip -y
     
 # Vim Dracula theme download
-mkdir -p $HOME/.vim/pack/themes/start
-git clone https://github.com/dracula/vim.git dracula $HOME/.vim/pack/themes/start/
+mkdir -p $HOME/.vim/pack/themes/start/dracula
+git clone https://github.com/dracula/vim.git $HOME/.vim/pack/themes/start/dracula
 
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
