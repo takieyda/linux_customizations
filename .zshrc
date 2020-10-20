@@ -119,7 +119,7 @@ export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ip='ip -color=auto'
+alias ip='ip --color=auto'
 alias diff='diff --color=auto'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
