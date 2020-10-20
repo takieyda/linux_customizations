@@ -127,6 +127,7 @@ sudo apt install \
     ranger \
     source-highlight \
     terminator \
+    tmux-plugin-manager \
     vim-airline \
     vim-gtk3 \
     wxhexeditor \
