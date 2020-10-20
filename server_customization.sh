@@ -82,6 +82,7 @@ sudo apt install \
     python3-pip \
     ranger \
     source-highlight \
+    tmux-plugin-manager \
     vim-airline \
     vim-gtk3 \
     xclip -y
