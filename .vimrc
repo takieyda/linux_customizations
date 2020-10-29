@@ -7,6 +7,7 @@ let g:airline_skip_empty_sections=1    " Collapses empty bottom row sections
 let g:airline_powerline_fonts=1     " Powerline like fonts and symbols
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr','maxlinenr',':%v'])    " 
 let g:airline_theme='dracula'    " Set theme
+set background=dark    " For compatibility with tmux
 
 syntax on    " Syntax highlighting on
 filetype plugin indent on    " Filetype detection for syntax highlighting, indenting on
