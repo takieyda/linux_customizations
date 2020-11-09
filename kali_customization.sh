@@ -271,6 +271,10 @@ mkdir -p $HOME/.local/share/gedit/styles/
 wget https://raw.githubusercontent.com/dracula/gedit/master/dracula.xml -O $HOME/.local/share/gedit/styles/dracula.xml
 gsettings set org.gnome.gedit.preferences.editor scheme "'dracula'"
 
+# VIM Dracula Theme
+mkdir -p ~/.vim/pack/themes/start
+git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
+
 # User theme
 gsettings set org.gnome.shell.extensions.user-theme name "'Kali-Dark'"
 gsettings set org.gnome.desktop.interface gtk-theme "'Mc-OS-Transparent-1.3'"
