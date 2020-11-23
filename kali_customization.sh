@@ -35,7 +35,7 @@ if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
     echo -e "${red}! *****  ${cyan}Gnome not found. Most changes in this script are Gnome specific.  ${red}*****${nc}"
 	echo -e "${red}! *****           ${yel}Please install the Gnome desktop environment.            ${red}*****${nc}\n"
     
-    while : ; do
+    while : ; do  # Infinite while loop
         read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
         case $ans in
             [Yy]*|"" ) echo -e "\n"; sudo apt install gnome -y; break;;
