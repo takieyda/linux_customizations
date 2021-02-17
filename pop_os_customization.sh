@@ -167,6 +167,9 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 # Disable Emjoi hotkey Ctrl-Shift-e -- https://forum.level1techs.com/t/gnome-disable-emoji-keyboard-shortcut-ctrl-shift-e/130351/10
 gsettings set org.freedesktop.ibus.panel.emoji hotkey []
 
+# Minimize and Maximize buttons on window title bar
+gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
+
 # Gedit Dracula Theme
 mkdir -p $HOME/.local/share/gedit/styles/
 wget https://raw.githubusercontent.com/dracula/gedit/master/dracula.xml -O $HOME/.local/share/gedit/styles/dracula.xml
