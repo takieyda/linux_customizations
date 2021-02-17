@@ -94,7 +94,7 @@ echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     cowsay \
-    dconf-editor \ # gnome-shell-extension-arc-menu \  # Repo version is no longer maintained, install from extensions.gnome.org
+    dconf-editor \
     gnome-shell-extension-dash-to-panel \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
