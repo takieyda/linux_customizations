@@ -179,6 +179,7 @@ mkdir -p ~/.vim/pack/themes/start
 git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 
 # User theme
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 gsettings set org.gnome.shell.extensions.user-theme name "'Mc-OS-CTLina-Gnome-Dark-1.3.2'"
 gsettings set org.gnome.desktop.interface gtk-theme "'Mc-OS-Transparent-1.3'"
 
