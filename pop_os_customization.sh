@@ -20,7 +20,7 @@ echo -e "*************************************************${nc}\n"
 
 
 # Initial apt update
-echo -e "\n\n$${cyan}*****  Performing initial apt update  *****${nc}"
+echo -e "\n\n${cyan}*****  Performing initial apt update  *****${nc}"
 sudo apt update
 
 
@@ -39,8 +39,8 @@ elif [ -f /etc/gdm/custom.conf ]; then
 else
     echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
     echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
-    ${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
-    ${red}! ${cyan}fix this issue.${nc}"
+${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
+${red}! ${cyan}fix this issue.${nc}"
 fi
 echo -e "\n\n"
 
@@ -68,6 +68,10 @@ echo -e "\n\n"
 
 # Install Oh-My-Zsh and plugins
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
+if [ `which zsh` == 1 ]; then
+    echo -e "${yel}# ${grn}Installing Zsh.${nc}"
+    sudo apt install zsh
+fi
 if [ ! -d $HOME/.oh-my-zsh ]; then
     # Have to manually exit zsh to continue
     # echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
@@ -81,7 +85,7 @@ fi
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-sudo chsh --shell /usr/bin/zsh kali
+sudo chsh --shell /usr/bin/zsh `whoami`
 echo -e "\n\n"
 
 
@@ -96,13 +100,14 @@ sudo apt install \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
     gnome-sushi \
+    gnome-tweaks
     lolcat \
     neofetch \
     powerline \
     python3-argcomplete \
     python3-pip \
     ranger \
-    Source-highlight \
+    source-highlight \
     terminator \
     tmux-plugin-manager \
     vim-airline \
