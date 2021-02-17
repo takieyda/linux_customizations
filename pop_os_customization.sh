@@ -68,7 +68,7 @@ echo -e "\n\n"
 
 # Install Oh-My-Zsh and plugins
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
-if [ `which zsh` == 1 ]; then
+if [ ! -f /usr/bin/zsh ]; then
     echo -e "${yel}# ${grn}Installing Zsh.${nc}"
     sudo apt install zsh
 fi
