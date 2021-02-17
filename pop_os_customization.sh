@@ -94,8 +94,7 @@ echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     cowsay \
-    dconf-editor \
-    \ # gnome-shell-extension-arc-menu \  # Repo version is no longer maintained, install from extensions.gnome.org
+    dconf-editor \ # gnome-shell-extension-arc-menu \  # Repo version is no longer maintained, install from extensions.gnome.org
     gnome-shell-extension-dash-to-panel \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
@@ -254,18 +253,18 @@ if [ ! -f $file ]; then
 else
     src=`head -n -3 $file`
     ext='    },
-        "Extensions": {
-          "Install": [
-            "https://addons.mozilla.org/firefox/downloads/file/3719054/ublock_origin-1.33.2-an+fx.xpi",
-            "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
-            ""https://addons.mozilla.org/firefox/downloads/file/3650887/facebook_container-2.1.2-fx.xpi,
-            ""https://addons.mozilla.org/firefox/downloads/file/3716461/https_everywhere-2021.1.27-an+fx.xpi,
-            "https://addons.mozilla.org/firefox/downloads/file/3547888/imagus-0.9.8.74-fx.xpi",
-            "https://addons.mozilla.org/firefox/downloads/file/3703195/reddit_enhancement_suite-5.20.12-an+fx.xpi"
-          ]
-        }
-      }
-    }'
+    "Extensions": {
+      "Install": [
+        "https://addons.mozilla.org/firefox/downloads/file/3719054/ublock_origin-1.33.2-an+fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
+        ""https://addons.mozilla.org/firefox/downloads/file/3650887/facebook_container-2.1.2-fx.xpi,
+        ""https://addons.mozilla.org/firefox/downloads/file/3716461/https_everywhere-2021.1.27-an+fx.xpi,
+        "https://addons.mozilla.org/firefox/downloads/file/3547888/imagus-0.9.8.74-fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/3703195/reddit_enhancement_suite-5.20.12-an+fx.xpi"
+      ]
+    }
+  }
+}'
     output=`echo -e "$src\n$ext"`
     echo -e "${yel}# ${grn}Original file backed up:${yel} $file.bak${nc}"
 
