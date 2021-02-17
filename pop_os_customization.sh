@@ -70,7 +70,7 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
 if [ ! -f /usr/bin/zsh ]; then
     echo -e "${yel}# ${grn}Installing Zsh.${nc}"
-    sudo apt install zsh
+    sudo apt install zsh -y
 fi
 if [ ! -d $HOME/.oh-my-zsh ]; then
     # Have to manually exit zsh to continue
@@ -100,7 +100,7 @@ sudo apt install \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
     gnome-sushi \
-    gnome-tweaks
+    gnome-tweaks \
     lolcat \
     neofetch \
     powerline \
