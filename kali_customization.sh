@@ -50,7 +50,7 @@ if [ -f /etc/gdm3/daemon.conf ]; then
     sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
     echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
 elif [ -f /etc/gdm/custom.conf ]; then
-    sudo -E sec -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
+    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
     echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
 else
     echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
