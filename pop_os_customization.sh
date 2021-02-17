@@ -34,7 +34,7 @@ if [ -f /etc/gdm3/daemon.conf ]; then
     sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
     echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
 elif [ -f /etc/gdm3/custom.conf ]; then
-    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
+    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/custom.conf
     echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
 else
     echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
@@ -95,7 +95,7 @@ echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     cowsay \
     dconf-editor \
-    # gnome-shell-extension-arc-menu \  # Repo version is no longer maintained, install from extensions.gnome.org \
+    \ # gnome-shell-extension-arc-menu \  # Repo version is no longer maintained, install from extensions.gnome.org
     gnome-shell-extension-dash-to-panel \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
@@ -202,7 +202,7 @@ rm $HOME/arc_menu_settings.txt $HOME/dash_to_panel_settings.txt
 # Firefox extensions -- https://github.com/mozilla/policy-templates/blob/master/README.md#extensions
 echo -e "${cyan}*****  Firefox extension installation  *****${nc}"
 file=/usr/lib/firefox/distribution/policies.json
-if [ -f $file] && [ ! -f $file.bak ]; then
+if [ -f $file ] && [ ! -f $file.bak ]; then
     sudo cp $file $file.bak
 else
     echo -e "${yel}# Backup file already exists${nc}"
