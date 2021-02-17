@@ -33,7 +33,7 @@ echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
 if [ -f /etc/gdm3/daemon.conf ]; then
     sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
     echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
-elif [ -f /etc/gdm/custom.conf ]; then
+elif [ -f /etc/gdm3/custom.conf ]; then
     sudo -E sec -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
     echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
 else
@@ -95,7 +95,7 @@ echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     cowsay \
     dconf-editor \
-    gnome-shell-extension-arc-menu \
+    # gnome-shell-extension-arc-menu \  # Repo version is no longer maintained, install from extensions.gnome.org
     gnome-shell-extension-dash-to-panel \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
@@ -152,7 +152,7 @@ chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
 # gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
 
 # Set Gnome Favorites
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop']"
 
 # Custom key bindings -- https://techwiser.com/custom-keyboard-shortcuts-ubuntu/
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
@@ -198,31 +198,78 @@ rm $HOME/arc_menu_settings.txt $HOME/dash_to_panel_settings.txt
 
 # Firefox extensions -- https://github.com/mozilla/policy-templates/blob/master/README.md#extensions
 echo -e "${cyan}*****  Firefox extension installation  *****${nc}"
-file=/usr/share/firefox-esr/distribution/policies.json
-src=`head -n -3 $file`
-ext='    },
+file=/usr/lib/firefox/distribution/policies.json
+if [ ! -f $file.bak ]; then
+    sudo cp $file $file.bak
+else
+    echo -e "${yel}# Backup file already exists${nc}"
+fi
+if [ ! -f $file ]; then
+    if [ ! -d /usr/lib/firefox/distribution ]; then
+        mkdir -p /usr/lib/firefox/distribution
+    fi
+    policies_json='{
+  "policies": {
+    "DisplayBookmarksToolbar": true,
+    "NoDefaultBookmarks": true,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "Homepage": {
+      "URL": "about:home",
+      "Locked": false,
+      "StartPage": "homepage"
+    },
+    "DisableTelemetry": true,
+    "NetworkPrediction": false,
+    "DNSOverHTTPS": {
+      "Enabled": false
+    },
+    "CaptivePortal": false,
+    "FirefoxHome": {
+      "Search": true,
+      "TopSites": true,
+      "Highlights": false,
+      "Pocket": false,
+      "Snippets": false,
+      "Locked": false
+    },
     "Extensions": {
       "Install": [
         "https://addons.mozilla.org/firefox/downloads/file/3719054/ublock_origin-1.33.2-an+fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
-        ""https://addons.mozilla.org/firefox/downloads/file/3650887/facebook_container-2.1.2-fx.xpi,
-        ""https://addons.mozilla.org/firefox/downloads/file/3716461/https_everywhere-2021.1.27-an+fx.xpi,
+        "https://addons.mozilla.org/firefox/downloads/file/3650887/facebook_container-2.1.2-fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/3716461/https_everywhere-2021.1.27-an+fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/3547888/imagus-0.9.8.74-fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/3703195/reddit_enhancement_suite-5.20.12-an+fx.xpi"
       ]
     }
   }
 }'
-output=`echo -e "$src\n$ext"`
-echo -e "${yel}# ${grn}Original file backed up:${yel} $file.bak${nc}"
-if [ ! -f $file.bak ]; then
-    sudo mv $file $file.bak
+    echo -e "$policies_json" > /tmp/policies.json
+    sudo mv /tmp/policies.json $file
+    sudo chown root:root $file
 else
-    echo -e "${yel}# Backup file already exists${nc}"
+    src=`head -n -3 $file`
+    ext='    },
+        "Extensions": {
+          "Install": [
+            "https://addons.mozilla.org/firefox/downloads/file/3719054/ublock_origin-1.33.2-an+fx.xpi",
+            "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
+            ""https://addons.mozilla.org/firefox/downloads/file/3650887/facebook_container-2.1.2-fx.xpi,
+            ""https://addons.mozilla.org/firefox/downloads/file/3716461/https_everywhere-2021.1.27-an+fx.xpi,
+            "https://addons.mozilla.org/firefox/downloads/file/3547888/imagus-0.9.8.74-fx.xpi",
+            "https://addons.mozilla.org/firefox/downloads/file/3703195/reddit_enhancement_suite-5.20.12-an+fx.xpi"
+          ]
+        }
+      }
+    }'
+    output=`echo -e "$src\n$ext"`
+    echo -e "${yel}# ${grn}Original file backed up:${yel} $file.bak${nc}"
+
+    echo -e "$output" > /tmp/policies.json
+    sudo mv /tmp/policies.json $file
+    sudo chown root:root $file
 fi
-echo -e "$output" > /tmp/policies.json
-sudo mv /tmp/policies.json $file
-sudo chown root:root $file
 echo -e "\n\n"
 
 
