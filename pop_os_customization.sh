@@ -1,6 +1,6 @@
 #!/bin/bash
-# Install customizations and apps for Kali Linux
-# Knowing working for: 2020.3
+# Install customizations and apps for Pop!_OS Linux
+# Knowing working for: Pop!_OS 20.10
 # Other versions are likely to work
 
 
@@ -14,7 +14,7 @@ declare red='\033[0;31m'  # Red
 
 echo -e "${cyan}*************************************************"
 echo -e "**                                             **"
-echo -e "**       ${yel}Kali Linux Customization Script${cyan}       **"
+echo -e "**     ${yel}Pop!_OS Linux Customization Script${cyan}      **"
 echo -e "**                                             **"
 echo -e "*************************************************${nc}\n"
 
@@ -28,23 +28,7 @@ sudo apt update
 echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
 echo -e "\n\n"
 
-
 # Desktop environment check
-echo -e "${cyan}*****  Checking for the Gnome desktop environment.  *****${nc}\n"
-if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
-    echo -e "${red}! *****  ${cyan}Gnome not found. Most changes in this script are Gnome specific.  ${red}*****${nc}"
-	echo -e "${red}! *****           ${yel}Please install the Gnome desktop environment.            ${red}*****${nc}\n"
-    
-    while : ; do  # Infinite while loop
-        read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
-        case $ans in
-            [Yy]*|"" ) echo -e "\n"; sudo apt install gnome -y; break;;
-            [Nn]* ) echo -e "\n\n${yel}# ${cyan}Most changes in this script are Gnome specific. ${red}Exiting script...${nc}\n"; exit;;
-            * ) echo -e "\n${yel}# ${cyan}Please choose ${yel}Yes ${cyan}or ${yel}No${cyan}.${nc}\n"
-        esac
-    done
-fi
-
 echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
 if [ -f /etc/gdm3/daemon.conf ]; then
     sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
@@ -105,110 +89,27 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
-    alien \
-    beep \
-    bloodhound \
     cowsay \
     dconf-editor \
     gnome-shell-extension-arc-menu \
     gnome-shell-extension-dash-to-panel \
-    gnome-shell-extension-desktop-icons \
-    gnome-shell-extension-easyscreencast \
-    gnome-shell-extension-proxyswitcher \
+    gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
     gnome-sushi \
-    gobuster \
     lolcat \
     neofetch \
     powerline \
-    python-pip \
     python3-argcomplete \
     python3-pip \
     ranger \
-    source-highlight \
+    Source-highlight \
     terminator \
     tmux-plugin-manager \
     vim-airline \
     vim-airline-themes \
     vim-gtk3 \
     wxhexeditor \
-    xclip \
-    zaproxy -y
-    
-# Setup beep command
-echo -e "\n${yel}# ${grn}Configuring and adding ${yel}`whoami` ${grn}to the beep user group.${nc}"
-sudo groupadd --system beep
-sudo usermod -aG beep `whoami`
-
-# Install Zenmap
-# ZenMap (as Root) shortcut doesn't seem to work, considering replacing it with sudo -E zenmap
-echo -e "\n${yel}# ${grn}Installing Zenmap GUI.${nc}"
-if [ ! -f /usr/bin/zenmap ]; then
-    wget "https://nmap.org/dist/zenmap-7.80-1.noarch.rpm" -O /tmp/zenmap.rpm
-    #curdir=`pwd`
-    cd /tmp
-    sudo alien zenmap.rpm -i
-    rm /tmp/zenmap*
-    cd - #$curdir
-else
-    echo -e "${yel}# ${cyan}Zenmap already installed.${nc}"
-fi
-echo -e "\n\n"
-
-
-# GitHub Repo clones
-# BASH arrays -- https://www.linuxjournal.com/content/bash-arrays
-# BASH For loops -- https://linuxhint.com/bash_loop_list_strings/
-echo -e "${cyan}*****  GitHub installations  *****${nc}"
-declare -a repos=( \
-    SecureAuthCorp/impacket \
-    411Hall/JAWS \
-    rebootuser/LinEnum \
-    sleventyeleven/linuxprivchecker \
-    diego-treitos/linux-smart-enumeration \
-    TsukiCTF/Lovely-Potato \
-    samratashok/nishang \
-    besimorhino/powercat \
-    PowerShellMafia/PowerSploit \
-    carlospolop/privilege-escalation-awesome-scripts-suite \
-    0x00-0x00/ShellPop \
-    absolomb/WindowsEnum \
-)
-
-echo -e "${yel}# ${grn}Cloning repos...${nc}"
-for repo in ${repos[@]}
-do
-    # In awk -F sets field separator, $NF returns number of fields choosing last element
-    git clone https://github.com/$repo $githome/$(echo $repo | awk -F '/' '{print $NF}')
-done
-
-# Impacket
-echo -e "\n${yel}# ${grn}Installing impacket.${nc}"
-cd $githome/impacket
-python3 -m pip install .
-cd - #$curdir  # Set at ln 74
-
-#ShellPop
-echo -e "\n${yel}# ${grn}Installing ShellPop.${nc}"
-cd $githome/ShellPop
-python -m pip install wheel
-python -m pip install -r requirements.txt
-sudo -E python setup.py install  # Will fail if CWD is not repo root directory
-cd - #$curdir
-echo -e "\n\n"
-
-
-# Other installs
-
-# AutoRecon
-echo -e "${cyan}*****  AutoRecon installation  *****${nc}"
-python3 -m pip install git+https://github.com/Tib3rius/AutoRecon.git
-echo -e "\n\n"
-
-# Evil-WinRM
-echo -e "${cyan}*****  Evil-WinRM installation  *****${nc}"
-sudo -E gem install evil-winrm
-echo -e "\n\n"
+    xclip -y
 
 
 # Install Gnome extensions -- https://linuxconfig.org/install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-20-04-linux
@@ -225,17 +126,11 @@ gnome-extensions enable arc-menu@linxgem33.com
 echo -e "${yel}# ${grn}Enabling Dash to Panel.${nc}"
 gnome-extensions enable dash-to-panel@jderose9.github.com
 
-echo -e "${yel}# ${grn}Enabling Desktop Icons.${nc}"
-gnome-extensions enable desktop-icons@csoriano
-
-echo -e "${yel}# ${grn}Enabling Easy ScreenCast Recorder${nc}"
-gnome-extensions enable EasyScreenCast@iacopodeenosee.gmail.com
+echo -e "${yel}# ${grn}Enabling Desktop Icons NG.${nc}"
+gnome-extensions enable ding@rastersoft.com
 
 echo -e "${yel}# ${grn}Disabling Places Menu.${nc}"
 gnome-extensions disable places-menu@gnome-shell-extensions.gcampax.github.com
-
-echo -e "${yel}# ${grn}Enabling Proxy Switcher.${nc}"
-gnome-extensions enable ProxySwitcher@flannaghan.com
 
 # Clean up
 # rm -rf $gnome_ext
@@ -244,15 +139,15 @@ echo -e "\n\n"
 
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
-rsync -ax --exclude-from=$githome/linux_customizations/rsync_exclude_list.txt $githome/linux_customizations/ $HOME
-mkdir -p $HOME/.local/share/backgrounds
-mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
+rsync -ax --exclude-from=$githome/linux_customizations/pop_os_exclude_list.txt $githome/linux_customizations/ $HOME
+# mkdir -p $HOME/.local/share/backgrounds
+# mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
 chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
+# gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
 
 # Set Gnome Favorites
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop', 'kali-msfconsole.desktop', 'kali-burpsuite.desktop', 'cherrytree.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop']"
 
 # Custom key bindings -- https://techwiser.com/custom-keyboard-shortcuts-ubuntu/
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
@@ -303,12 +198,12 @@ src=`head -n -3 $file`
 ext='    },
     "Extensions": {
       "Install": [
-        "https://addons.mozilla.org/firefox/downloads/file/3343599/cookie_quick_manager-0.5rc2-an+fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3616824/foxyproxy_standard-7.5.1-an+fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3398269/max_hackbar-4.7-fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/3719054/ublock_origin-1.33.2-an+fx.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3384326/http_header_live-0.6.5.2-fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3618861/wappalyzer-6.2.3-fx.xpi"
+        ""https://addons.mozilla.org/firefox/downloads/file/3650887/facebook_container-2.1.2-fx.xpi,
+        ""https://addons.mozilla.org/firefox/downloads/file/3716461/https_everywhere-2021.1.27-an+fx.xpi,
+        "https://addons.mozilla.org/firefox/downloads/file/3547888/imagus-0.9.8.74-fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/3703195/reddit_enhancement_suite-5.20.12-an+fx.xpi"
       ]
     }
   }

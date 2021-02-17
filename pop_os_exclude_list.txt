@@ -4,6 +4,7 @@ pop_os_exclude_list.txt
 kali_customization.sh
 server_customization.sh
 pop_os_customization.sh
+kali_wallpaper.png
 linux_customizations1.png
 linux_customizations2.png
 README.md
