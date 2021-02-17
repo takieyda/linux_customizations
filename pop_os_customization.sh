@@ -193,7 +193,7 @@ echo -e "${cyan}*****  Arc Menu customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/arc-menu/ < $HOME/arc_menu_settings.txt
 echo -e "${cyan}*****  Dash to Panel customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/dash-to-panel/ < $HOME/dash_to_panel_settings.txt
-rm arc_menu_settings.txt dash_to_panel_settings.txt
+rm $HOME/arc_menu_settings.txt $HOME/dash_to_panel_settings.txt
 
 
 # Firefox extensions -- https://github.com/mozilla/policy-templates/blob/master/README.md#extensions
