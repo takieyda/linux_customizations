@@ -105,7 +105,6 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
-    alien \
     beep \
     bloodhound \
     cowsay \
@@ -139,21 +138,6 @@ sudo apt install \
 echo -e "\n${yel}# ${grn}Configuring and adding ${yel}`whoami` ${grn}to the beep user group.${nc}"
 sudo groupadd --system beep
 sudo usermod -aG beep `whoami`
-
-# Install Zenmap
-# ZenMap (as Root) shortcut doesn't seem to work, considering replacing it with sudo -E zenmap
-echo -e "\n${yel}# ${grn}Installing Zenmap GUI.${nc}"
-if [ ! -f /usr/bin/zenmap ]; then
-    wget "https://nmap.org/dist/zenmap-7.80-1.noarch.rpm" -O /tmp/zenmap.rpm
-    #curdir=`pwd`
-    cd /tmp
-    sudo alien zenmap.rpm -i
-    rm /tmp/zenmap*
-    cd - #$curdir
-else
-    echo -e "${yel}# ${cyan}Zenmap already installed.${nc}"
-fi
-echo -e "\n\n"
 
 
 # GitHub Repo clones
@@ -237,8 +221,6 @@ gnome-extensions disable places-menu@gnome-shell-extensions.gcampax.github.com
 echo -e "${yel}# ${grn}Enabling Proxy Switcher.${nc}"
 gnome-extensions enable ProxySwitcher@flannaghan.com
 
-# Clean up
-# rm -rf $gnome_ext
 echo -e "\n\n"
 
 
