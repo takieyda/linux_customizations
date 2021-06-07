@@ -120,7 +120,6 @@ sudo apt install \
     lolcat \
     neofetch \
     powerline \
-    python-pip \
     python3-argcomplete \
     python3-pip \
     ranger \
@@ -132,7 +131,9 @@ sudo apt install \
     vim-gtk3 \
     wxhexeditor \
     xclip \
-    zaproxy -y
+    zaproxy -y    
+
+# Removeed python-pip, added installation of get-pip.py for Python 2.7
     
 # Setup beep command
 echo -e "\n${yel}# ${grn}Configuring and adding ${yel}`whoami` ${grn}to the beep user group.${nc}"
@@ -174,6 +175,10 @@ cd - #$curdir  # Set at ln 74
 
 #ShellPop
 echo -e "\n${yel}# ${grn}Installing ShellPop.${nc}"
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o $githome/get-pip.py    # ShellPop installation depends on Python 2 pip for pyperclip
+python $githome/get-pip.py
+python -m pip install --upgrade setuptools
+
 cd $githome/ShellPop
 python -m pip install wheel
 python -m pip install -r requirements.txt
