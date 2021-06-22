@@ -20,6 +20,9 @@
 ## Use auto-indentation.
 set autoindent
 
+## Show line numbers.
+set linenumbers
+
 ## Backup files to filename~.
 # set backup
 
@@ -44,7 +47,7 @@ set brackets ""')>]}"
 
 ## Constantly display the cursor position in the statusbar.  Note that
 ## this overrides "quickblank".
-set const
+set constantshow
 
 ## Use cut to end of line by default.
 # set cut
@@ -149,7 +152,7 @@ set regexp
 set speller "aspell -x -c"
 
 ## Allow nano to be suspended.
-set suspend
+set suspendable
 
 ## Use this tab size instead of the default; it must be greater than 0.
 set tabsize 4
