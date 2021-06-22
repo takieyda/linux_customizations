@@ -1,3 +1,6 @@
+call plug#begin()
+call plug#end()
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -26,4 +29,4 @@ set ignorecase    " Case insensitive search
 set splitbelow splitright   " Split window either below or right of current pane
 
 packadd! dracula
-colorscheme dracula
+"colorscheme dracula
