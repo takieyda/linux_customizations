@@ -267,8 +267,11 @@ mkdir -p ~/.vim/pack/themes/start
 git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 
 # vim-plug install
+# https://github.com/junegunn/vim-plug
+# https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
 # User theme
 gsettings set org.gnome.shell.extensions.user-theme name "'Kali-Dark'"
