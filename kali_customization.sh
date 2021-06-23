@@ -117,12 +117,15 @@ sudo apt install \
     gnome-shell-extensions \
     gnome-sushi \
     gobuster \
+    joplin \
     lolcat \
+    minder \
     neofetch \
     powerline \
     python3-argcomplete \
     python3-pip \
     ranger \
+    rsync \
     source-highlight \
     terminator \
     tmux-plugin-manager \
