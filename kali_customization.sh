@@ -266,6 +266,10 @@ gsettings set org.gnome.gedit.preferences.editor scheme "'dracula'"
 mkdir -p ~/.vim/pack/themes/start
 git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 
+# vim-plug install
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 # User theme
 gsettings set org.gnome.shell.extensions.user-theme name "'Kali-Dark'"
 gsettings set org.gnome.desktop.interface gtk-theme "'Mc-OS-Transparent-1.3'"
