@@ -34,10 +34,27 @@ set ignorecase    " Case insensitive search
 set splitbelow splitright   " Split window either below or right of current pane
 
 " NERDTree Configuration
-let NERDTreeShowBookmarks=1
 nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
+nnoremap <C-k>nf :NERDTreeFind<CR>
 " NERDTree open on vim open
 augroup nerdtree_open
     autocmd!
     autocmd VimEnter * NERDTree | wincmd p
 augroup END
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['.git']
+let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.str(), ':~'):''}"
+
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
