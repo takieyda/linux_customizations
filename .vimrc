@@ -13,7 +13,7 @@ let g:airline_powerline_fonts=1     " Powerline like fonts and symbols
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr','maxlinenr',':%v'])    " 
 let g:airline_theme='dracula'    " Set theme
 set background=dark     " For compatibility with tmux
-packadd! dracula
+"packadd! dracula
 "colorscheme dracula
 
 
@@ -36,3 +36,8 @@ set splitbelow splitright   " Split window either below or right of current pane
 " NERDTree Configuration
 let NERDTreeShowBookmarks=1
 nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
+" NERDTree open on vim open
+augroup nerdtree_open
+    autocmd!
+    autocmd VimEnter * NERDTree | wincmd p
+augroup END
