@@ -1,4 +1,6 @@
+" vim-plug
 call plug#begin()
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 if !exists('g:airline_symbols')
@@ -10,7 +12,10 @@ let g:airline_skip_empty_sections=1    " Collapses empty bottom row sections
 let g:airline_powerline_fonts=1     " Powerline like fonts and symbols
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr','maxlinenr',':%v'])    " 
 let g:airline_theme='dracula'    " Set theme
-set background=dark    " For compatibility with tmux
+set background=dark     " For compatibility with tmux
+packadd! dracula
+"colorscheme dracula
+
 
 syntax on    " Syntax highlighting on
 filetype plugin indent on    " Filetype detection for syntax highlighting, indenting on
@@ -28,5 +33,6 @@ set ignorecase    " Case insensitive search
 
 set splitbelow splitright   " Split window either below or right of current pane
 
-packadd! dracula
-"colorscheme dracula
+" NERDTree Configuration
+let NERDTreeShowBookmarks=1
+nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
