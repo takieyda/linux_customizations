@@ -1,12 +1,15 @@
 " vim-plug
 call plug#begin()
 Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/AutoComplPop'
 call plug#end()
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
+
+" Theme related
 let g:airline#extensions#tabline#enabled=1    " Top line showing tabes of open files
 let g:airline_skip_empty_sections=1    " Collapses empty bottom row sections
 let g:airline_powerline_fonts=1     " Powerline like fonts and symbols
@@ -17,6 +20,7 @@ set background=dark     " For compatibility with tmux
 "colorscheme dracula
 
 
+" Basic Settings
 syntax on    " Syntax highlighting on
 filetype plugin indent on    " Filetype detection for syntax highlighting, indenting on
 
@@ -30,8 +34,14 @@ set shiftwidth=4    " Indention amount for < and > commands
 set mouse=a     " Allows for mouse selection of text without copying line numbers, and pane resizing with mouse
 set showmatch    " Show matching (,{ when ),} is entered
 set ignorecase    " Case insensitive search
-
+set clipboard=unnamedplus    " Allows for yanking to clipboard
 set splitbelow splitright   " Split window either below or right of current pane
+
+
+" AutoComplPop Settings
+set complete+=kspell
+set completeopt=menuone,preview
+
 
 " NERDTree Configuration
 nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
