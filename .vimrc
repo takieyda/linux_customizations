@@ -39,7 +39,7 @@ nnoremap <C-k>nf :NERDTreeFind<CR>
 " NERDTree open on vim open
 augroup nerdtree_open
     autocmd!
-    autocmd VimEnter * NERDTree | wincmd p
+    autocmd VimEnter * NERDTreeCWD | wincmd p
 augroup END
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['.git']
@@ -47,6 +47,7 @@ let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.
 
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
+" https://github.com/preservim/nerdtree/issues/21#issuecomment-907483
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
 function! s:CloseIfOnlyNerdTreeLeft()
