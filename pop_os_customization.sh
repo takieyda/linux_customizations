@@ -178,6 +178,10 @@ gsettings set org.gnome.gedit.preferences.editor scheme "'dracula'"
 mkdir -p ~/.vim/pack/themes/start
 git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 
+# tmux-plugin-manager plugins install
+# https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.
+/usr/share/tmux-plugin-manager/bin/install_plugins
+
 # User theme
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 gsettings set org.gnome.shell.extensions.user-theme name "'Mc-OS-CTLina-Gnome-Dark-1.3.2'"
