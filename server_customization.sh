@@ -91,6 +91,10 @@ sudo apt install \
 mkdir -p $HOME/.vim/pack/themes/start/dracula
 git clone https://github.com/dracula/vim.git $HOME/.vim/pack/themes/start/dracula
 
+# tmux-plugin-manager plugins install
+# https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.
+/usr/share/tmux-plugin-manager/bin/install_plugins
+
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
 rsync -ax --exclude-from=$githome/linux_customizations/server_exclude_list.txt $githome/linux_customizations/ $HOME
