@@ -273,6 +273,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
+# tmux-plugin-manager plugins install
+# https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.
+/usr/share/tmux-plugin-manager/bin/install_plugins
+
 # User theme
 gsettings set org.gnome.shell.extensions.user-theme name "'Kali-Dark'"
 gsettings set org.gnome.desktop.interface gtk-theme "'Mc-OS-Transparent-1.3'"
