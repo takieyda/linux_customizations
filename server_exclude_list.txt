@@ -3,6 +3,7 @@ server_exclude_list.txt
 .config/
 .conky/
 .git/
+.gitignore
 .local/share/applications/
 .local/share/fonts/
 .themes/
