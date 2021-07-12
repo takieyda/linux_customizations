@@ -10,3 +10,4 @@ linux_customizations1.png
 linux_customizations2.png
 README.md
 .git/
+.gitignore
