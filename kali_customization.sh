@@ -20,7 +20,7 @@ echo -e "*************************************************${nc}\n"
 
 
 # Initial apt update
-echo -e "\n\n$${cyan}*****  Performing initial apt update  *****${nc}"
+echo -e "\n\n${cyan}*****  Performing initial apt update  *****${nc}"
 sudo apt update
 
 
@@ -44,6 +44,10 @@ if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
         esac
     done
 fi
+
+echo -e "\n${yel}# ${grn}Removing gnome-games and running apt autoremove.${nc}"
+sudo apt remove gnome-games -y
+sudo apt autoremove -y
 
 echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
 if [ -f /etc/gdm3/daemon.conf ]; then
@@ -85,11 +89,6 @@ echo -e "\n\n"
 # Install Oh-My-Zsh and plugins
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
 if [ ! -d $HOME/.oh-my-zsh ]; then
-    # Have to manually exit zsh to continue
-    # echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
-    # read -n 1 -r -p "Press any key to continue..."
-    #echo -e "\n\n"
-
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
     echo -e "${yel}# ${grn}Oh My Zsh already installed.${nc}"
@@ -115,7 +114,9 @@ sudo apt install \
     gnome-shell-extension-easyscreencast \
     gnome-shell-extension-proxyswitcher \
     gnome-shell-extensions \
+    gnome-remote-desktop \
     gnome-sushi \
+    gnome-tweaks \
     gobuster \
     joplin \
     lolcat \
@@ -294,7 +295,7 @@ echo -e "${cyan}*****  Arc Menu customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/arc-menu/ < $HOME/arc_menu_settings.txt
 echo -e "${cyan}*****  Dash to Panel customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/dash-to-panel/ < $HOME/dash_to_panel_settings.txt
-rm arc_menu_settings.txt dash_to_panel_settings.txt
+rm $HOME/arc_menu_settings.txt $HOME/dash_to_panel_settings.txt
 
 
 # Firefox extensions -- https://github.com/mozilla/policy-templates/blob/master/README.md#extensions
