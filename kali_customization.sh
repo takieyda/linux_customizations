@@ -133,6 +133,7 @@ sudo apt install \
     vim-airline \
     vim-airline-themes \
     vim-gtk3 \
+    vinagre \
     wxhexeditor \
     xclip \
     zaproxy -y    
@@ -286,8 +287,9 @@ gsettings set org.gnome.desktop.interface gtk-theme "'Mc-OS-Transparent-1.3'"
 gsettings set org.gnome.desktop.default-applications.terminal exec "'terminator'"
 gsettings set org.gnome.desktop.default-applications.terminal exec-arg "'-x'"
 
-# Automatic screen lock
+# Disable automatic screen lock and blank screen
 gsettings set org.gnome.desktop.screensaver lock-enabled "false"
+gsettings set org.gnome.desktop.session idle-delay "uint32 0"
 echo -e "\n"
 
 # Arc Menu and Dash to Panel customization -- https://developer.gnome.org/dconf/unstable/dconf-tool.html
