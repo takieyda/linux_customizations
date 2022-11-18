@@ -2,6 +2,7 @@
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/AutoComplPop'
+Plug 'dracula/vim',{'as':'dracula'}
 call plug#end()
 
 if !exists('g:airline_symbols')
