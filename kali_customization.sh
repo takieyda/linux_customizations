@@ -24,7 +24,7 @@ echo -e "\n\n${cyan}*****  Performing initial apt update  *****${nc}"
 sudo apt update
 
 
-# Password reminder
+o# Password reminder
 echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
 echo -e "\n\n"
 
@@ -36,7 +36,11 @@ if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
 	echo -e "${red}! *****           ${yel}Please install the Gnome desktop environment.            ${red}*****${nc}\n"
     
     while : ; do  # Infinite while loop
-        read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
+	if [ $SHELL =~ 'zsh' ]; then
+	    read "ans?Do you want to install Gnome now? [Y/n] "
+	else
+            read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
+	fi
         case $ans in
             [Yy]*|"" ) echo -e "\n"; sudo apt install gnome -y; break;;
             [Nn]* ) echo -e "\n\n${yel}# ${cyan}Most changes in this script are Gnome specific. ${red}Exiting script...${nc}\n"; exit;;
@@ -110,15 +114,15 @@ sudo apt install \
     dconf-editor \
     gnome-shell-extension-arc-menu \
     gnome-shell-extension-dash-to-panel \
-    gnome-shell-extension-desktop-icons \
+    gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extension-easyscreencast \
-    gnome-shell-extension-proxyswitcher \
     gnome-shell-extensions \
     gnome-remote-desktop \
     gnome-sushi \
     gnome-tweaks \
     gobuster \
     joplin \
+    libcurl4-openssl-dev \
     lolcat \
     minder \
     neofetch \
@@ -138,6 +142,9 @@ sudo apt install \
     xclip \
     zaproxy -y    
 
+sudo pip3 install --uprgade wfuzz
+
+# gnome-shell-extension-proxyswitcher no longer in repo
 # Removeed python-pip, added installation of get-pip.py for Python 2.7
     
 # Setup beep command
@@ -338,7 +345,11 @@ echo -e "${yel}###   Please REBOOT for some changes to take effect   ###${nc}\n\
 
 
 while : ; do
-    read -n 1 -p "Do you want to reboot now? [Y/n] " ans
+    if [ $SHELL =~ 'zsh' ]; then
+        read 'ans?Do you want to reboot now? [Y/n] '
+    else
+        read -n 1 -p "Do you want to reboot now? [Y/n] " ans
+    fi
     case $ans in
         [Yy]*|"" ) echo -e "\n"; sudo reboot;;
         [Nn]* ) echo -e "\n\n"; break;;
