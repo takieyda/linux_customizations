@@ -37,6 +37,7 @@ set showmatch    " Show matching (,{ when ),} is entered
 set ignorecase    " Case insensitive search
 set clipboard=unnamedplus    " Allows for yanking to clipboard
 set splitbelow splitright   " Split window either below or right of current pane
+set cursorline    " Horizontal line on screen where cursor is
 
 
 " AutoComplPop Settings
