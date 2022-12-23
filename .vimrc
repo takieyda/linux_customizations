@@ -87,3 +87,4 @@ endfunction
 
 let g:indentguides_spacechar = '▏' "'┆'
 let g:indentguides_tabchar = '|'
+autocmd WinEnter * IndentGuidesToggle
