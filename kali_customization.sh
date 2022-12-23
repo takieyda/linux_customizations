@@ -24,7 +24,7 @@ echo -e "\n\n${cyan}*****  Performing initial apt update  *****${nc}"
 sudo apt update
 
 
-o# Password reminder
+# Password reminder
 echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password.  ${cyan}*****${nc}"
 echo -e "\n\n"
 
