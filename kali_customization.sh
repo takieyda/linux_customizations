@@ -201,6 +201,11 @@ echo -e "\n\n"
 
 # Other installs
 
+# Updog
+echo -e "${cyan}*****  Updog installation  *****${nc}"
+python3 -m pip install updog
+echo -e "\n\n"
+
 # AutoRecon
 echo -e "${cyan}*****  AutoRecon installation  *****${nc}"
 python3 -m pip install git+https://github.com/Tib3rius/AutoRecon.git
