@@ -1,3 +1,4 @@
+" =====  Vim-Plug settings  =====
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -9,7 +10,10 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \| PlugInstall --sync | source $MYVIMRC
     \| endif
 
+" Plugin list
 call plug#begin()
+    Plug 'godlygeek/tabular'
+    Plug 'preservim/vim-markdown'
     Plug 'thaerkh/vim-indentguides'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-scripts/AutoComplPop'
@@ -17,10 +21,10 @@ call plug#begin()
 call plug#end()
 
 
+" =====  Vim-Airline  =====
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
 
 " Theme related
 let g:airline#extensions#tabline#enabled=1  " Top line showing tabes of open files
@@ -33,31 +37,34 @@ set background=dark                         " For compatibility with tmux
 "packadd! dracula
 "colorscheme dracula
 
-" Basic Settings
-syntax on                  " Syntax highlighting on
-filetype plugin indent on  " Filetype detection, syntax highlighting, indenting on
 
-set laststatus=2           " Bottom row always visible
-set number                 " Show line numbers
-set incsearch              " Incremental search, starts search as typed
-set hlsearch               " Highlight search, highlights matching results
-set expandtab              " Tab replacedwith  the appropriate number of spaces
-set tabstop=4              " Tab set to 4 spaces
-set shiftwidth=4           " Indention amount for < and > commands
-set mouse=a                " Mouse text select, no line numbers, and pane resizinge
-set showmatch              " Show matching (,{ when ),} is entered
-set ignorecase             " Case insensitive search
-set clipboard=unnamedplus  " Allows for yanking to clipboard
-set splitbelow splitright  " Split window either below or right of current pane
-set cursorline             " Horizontal line on screen where cursor is
+" =====  Basic Settings  =====
+syntax on                    " Syntax highlighting on
+filetype plugin indent on    " Filetype detection, syntax highlighting, indenting on
+
+set laststatus=2             " Bottom row always visible
+set number                   " Show line numbers
+set incsearch                " Incremental search, starts search as typed
+set hlsearch                 " Highlight search, highlights matching results
+set expandtab                " Tab replacedwith  the appropriate number of spaces
+set tabstop=4                " Tab set to 4 spaces
+set shiftwidth=4             " Indention amount for < and > commands
+set mouse=a                  " Mouse text select, no line nums, and pane resizinge
+set showmatch                " Show matching (,{ when ),} is entered
+set ignorecase               " Case insensitive search
+set clipboard=unnamedplus    " Allows for yanking to clipboard
+set splitbelow splitright    " Split window either below or right of current pane
+autocmd VimResized * wincmd =
+set cursorline               " Horizontal line on screen where cursor issues
+set scrolloff=24             " Keep working line in middle of screen
 
 
-" AutoComplPop Settings
+" =====  AutoComplPop Settings  =====
 set complete+=kspell
 set completeopt=menuone,preview
 
 
-" NERDTree Configuration
+" =====  NERDTree Configuration  =====
 nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
 nnoremap <C-k>nf :NERDTreeFind<CR>
 " NERDTree open on vim open
@@ -85,6 +92,13 @@ function! s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 
+"  ===== IndentGuides  =====
 let g:indentguides_spacechar = '▏' "'┆'
 let g:indentguides_tabchar = '|'
 autocmd WinEnter * IndentGuidesToggle
+
+
+" =====  Markdown and Header Folding  =====
+set conceallevel=2
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_follow_anchor = 1
