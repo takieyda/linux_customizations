@@ -96,7 +96,7 @@ endfunction
 "  ===== IndentGuides  =====
 let g:indentguides_spacechar = '▏' "'┆'
 let g:indentguides_tabchar = '|'
-autocmd WinEnter * IndentGuidesToggle
+autocmd VimEnter * IndentGuidesToggle
 
 
 " =====  Markdown and Header Folding  =====
