@@ -14,6 +14,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin()
     Plug 'godlygeek/tabular'
     Plug 'preservim/vim-markdown'
+    Plug 'tommcdo/vim-lion'
     Plug 'thaerkh/vim-indentguides'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-scripts/AutoComplPop'
