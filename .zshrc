@@ -121,6 +121,7 @@ export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ip='ip -color=auto'
 alias diff='diff --color=auto'
+alias nmap='sudo nmap'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

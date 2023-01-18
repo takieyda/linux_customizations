@@ -1,4 +1,4 @@
-" =====  Vim-Plug settings  =====
+" ==========  Vim-Plug settings  ========== {{{
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -21,8 +21,10 @@ call plug#begin()
     Plug 'dracula/vim',{'as':'dracula'}
 call plug#end()
 
+" }}}
 
-" =====  Vim-Airline  =====
+
+" ==========  Vim-Airline / Theme  ========== {{{
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -38,8 +40,10 @@ set background=dark                         " For compatibility with tmux
 "packadd! dracula
 "colorscheme dracula
 
+" }}}
 
-" =====  Basic Settings  =====
+
+" ==========  Basic Settings  ========== {{{
 syntax on                    " Syntax highlighting on
 filetype plugin indent on    " Filetype detection, syntax highlighting, indenting on
 
@@ -59,47 +63,69 @@ autocmd VimResized * wincmd =
 set cursorline               " Horizontal line on screen where cursor issues
 set scrolloff=24             " Keep working line in middle of screen
 
-
-" =====  AutoComplPop Settings  =====
-set complete+=kspell
-set completeopt=menuone,preview
+" }}}
 
 
-" =====  NERDTree Configuration  =====
-nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
-nnoremap <C-k>nf :NERDTreeFind<CR>
-" NERDTree open on vim open
-augroup nerdtree_open
-    autocmd!
-    autocmd VimEnter * NERDTreeCWD | wincmd p
-augroup END
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['.git']
-let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.str(), ':~'):''}"
+" ==========  VIM Script  ========== {{{
 
-autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
-" https://github.com/preservim/nerdtree/issues/21#issuecomment-907483
-" Close all open buffers on entering a window if the only
-" buffer that's left is the NERDTree buffer
-function! s:CloseIfOnlyNerdTreeLeft()
-    if exists("t:NERDTreeBufName")
-        if bufwinnr(t:NERDTreeBufName) != -1
-            if winnr("$") == 1
-                q
+    " ==========  AutoComplPop Settings  ========== {{{
+    set complete+=kspell
+    set completeopt=menuone,preview
+    " }}}
+    
+    
+    " ==========  NERDTree Configuration  ========== {{{
+    nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
+    nnoremap <C-k>nf :NERDTreeFind<CR>
+    " NERDTree open on vim open
+    augroup nerdtree_open
+        autocmd!
+        autocmd VimEnter * NERDTreeCWD | wincmd p
+    augroup END
+    let NERDTreeShowBookmarks=1
+    let NERDTreeIgnore=['.git']
+    let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.str(), ':~'):''}"
+    
+    autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+    
+    " https://github.com/preservim/nerdtree/issues/21#issuecomment-907483
+    " Close all open buffers on entering a window if the only
+    " buffer that's left is the NERDTree buffer
+    function! s:CloseIfOnlyNerdTreeLeft()
+        if exists("t:NERDTreeBufName")
+            if bufwinnr(t:NERDTreeBufName) != -1
+                if winnr("$") == 1
+                    q
+                endif
             endif
         endif
-    endif
-endfunction
-
-
-"  ===== IndentGuides  =====
-let g:indentguides_spacechar = '▏' "'┆'
-let g:indentguides_tabchar = '|'
-autocmd VimEnter * IndentGuidesToggle
-
-
-" =====  Markdown and Header Folding  =====
-set conceallevel=2
-let g:vim_markdown_folding_style_pythonic = 1
-let g:vim_markdown_follow_anchor = 1
+    endfunction
+    " }}}
+    
+    
+    "  ========== IndentGuides  ========== {{{
+    let g:indentguides_spacechar = '▏' "'┆'
+    let g:indentguides_tabchar = '|'
+    autocmd VimEnter * IndentGuidesToggle
+    " }}}
+    
+    
+    " ==========  Markdown and Header Folding  ========== {{{
+    set conceallevel=2
+    let g:vim_markdown_folding_style_pythonic = 1
+    let g:vim_markdown_follow_anchor = 1
+    " }}}
+    
+    
+    " ==========  Folding Settings  ========== {{{
+    " This will enable code folding.
+    " Use the marker method of folding.
+    augroup filetype_vim
+        autocmd!
+        autocmd FileType vim setlocal foldmethod=marker
+    augroup END 
+    
+    " }}}
+    
+" }}}
