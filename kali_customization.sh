@@ -123,6 +123,7 @@ sudo apt install \
     gobuster \
     joplin \
     libcurl4-openssl-dev \
+    libssl-dev \
     lolcat \
     minder \
     neofetch \
@@ -142,7 +143,9 @@ sudo apt install \
     xclip \
     zaproxy -y    
 
-sudo pip3 install --uprgade wfuzz
+# Recompile wfuzz against OpenSSLb
+pip install --force-reinstall wfuzz
+#sudo pip3 install --uprgade wfuzz
 
 # gnome-shell-extension-proxyswitcher no longer in repo
 # Removeed python-pip, added installation of get-pip.py for Python 2.7
