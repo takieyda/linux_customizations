@@ -309,7 +309,7 @@ echo -e "\n"
 
 # Arc Menu and Dash to Panel customization -- https://developer.gnome.org/dconf/unstable/dconf-tool.html
 echo -e "${cyan}*****  Arc Menu customizations  *****${nc}\n"
-dconf load /org/gnome/shell/extensions/arc-menu/ < $HOME/arc_menu_settings.txt
+dconf load /org/gnome/shell/extensions/arcmenu/ < $HOME/arc_menu_settings.txt
 echo -e "${cyan}*****  Dash to Panel customizations  *****${nc}\n"
 dconf load /org/gnome/shell/extensions/dash-to-panel/ < $HOME/dash_to_panel_settings.txt
 rm $HOME/arc_menu_settings.txt $HOME/dash_to_panel_settings.txt
