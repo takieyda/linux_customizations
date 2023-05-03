@@ -1,3 +1,4 @@
+
 [global_config]
   title_transmit_fg_color = "#FFFFFF"
   title_transmit_bg_color = "#BD3FBF"
@@ -17,7 +18,7 @@
     use_system_font = False
   [[dracula]]
     background_color = "#282a36"
-    background_darkness = 0.85
+    background_darkness = 0.80
     background_type = transparent
     cursor_color = "#FFB86C"
     font = MesloLGS NF 10
@@ -32,5 +33,5 @@
     [[[child1]]]
       type = Terminal
       parent = window0
-      profile = default
+      profile = dracula
 [plugins]

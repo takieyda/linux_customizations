@@ -112,6 +112,8 @@ sudo apt install \
     bloodhound \
     cowsay \
     dconf-editor \
+    gedit \
+    gedit-plugins \
     gnome-shell-extension-arc-menu \
     gnome-shell-extension-dash-to-panel \
     gnome-shell-extension-desktop-icons-ng \
