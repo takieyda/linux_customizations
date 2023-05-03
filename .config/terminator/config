@@ -1,30 +1,23 @@
-
 [global_config]
-  title_transmit_fg_color = "#FFFFFF"
-  title_transmit_bg_color = "#BD3FBF"
-  title_receive_fg_color = "#8be9fd"
-  title_receive_bg_color = "#282a36"
-  title_inactive_fg_color = "#f8f8f2"
-  title_inactive_bg_color = "#282a36"
-  title_font = MesloLGS NF 9
 [keybindings]
 [profiles]
   [[default]]
-    background_darkness = 0.80
+    background_darkness = 0.85
     background_type = transparent
-    cursor_color = "#aaaaaa"
     font = MesloLGS NF 10
     foreground_color = "#ffffff"
     use_system_font = False
   [[dracula]]
     background_color = "#282a36"
-    background_darkness = 0.80
+    background_darkness = 0.85
     background_type = transparent
-    cursor_color = "#FFB86C"
     font = MesloLGS NF 10
     foreground_color = "#f8f8f2"
-    palette = "#262626:#e356a7:#42e66c:#e4f34a:#9b6bdf:#e64747:#75d7ec:#efa554:#7a7a7a:#ff79c6:#50fa7b:#f1fa8c:#bd93f9:#ff5555:#8be9fd:#ffb86c"
+    palette = "#262626:#e356a7:#42e66c:#e4f34a:#9b6bdf:#e64747:#75d7ec:#d3d7cf:#7a7a7a:#ff79c6:#50fa7b:#f1fa8c:#bd93f9:#ff5555:#8be9fd:#eeeeec"
     use_system_font = False
+    title_transmit_bg_color = "#bd3fbf"
+    title_receive_bg_color = "#282a36"
+    title_inactive_bg_color = "#282a36"
 [layouts]
   [[default]]
     [[[window0]]]

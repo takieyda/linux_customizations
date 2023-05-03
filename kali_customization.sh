@@ -110,6 +110,7 @@ echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     beep \
     bloodhound \
+    btop \
     cowsay \
     dconf-editor \
     gedit \
@@ -137,6 +138,7 @@ sudo apt install \
     source-highlight \
     terminator \
     tmux-plugin-manager \
+    ueberzug \
     vim-airline \
     vim-airline-themes \
     vim-gtk3 \
