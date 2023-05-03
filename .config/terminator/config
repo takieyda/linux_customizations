@@ -2,6 +2,17 @@
 [keybindings]
 [profiles]
   [[default]]
+    background_color = "#282a36"
+    background_darkness = 0.85
+    background_type = transparent
+    font = MesloLGS NF 10
+    foreground_color = "#f8f8f2"
+    palette = "#262626:#e356a7:#42e66c:#e4f34a:#9b6bdf:#e64747:#75d7ec:#d3d7cf:#7a7a7a:#ff79c6:#50fa7b:#f1fa8c:#bd93f9:#ff5555:#8be9fd:#eeeeec"
+    use_system_font = False
+    title_transmit_bg_color = "#bd3fbf"
+    title_receive_bg_color = "#282a36"
+    title_inactive_bg_color = "#282a36"
+  [[default-bak]]
     background_darkness = 0.85
     background_type = transparent
     font = MesloLGS NF 10
