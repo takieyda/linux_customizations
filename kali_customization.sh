@@ -296,7 +296,8 @@ git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 # https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
+vim -es -u ~/.vimrc -i NONE -c "PlugInstall" -c "qa"
+nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
 # tmux-plugin-manager plugins install
 # https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.
