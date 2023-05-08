@@ -262,6 +262,9 @@ sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vi
 chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
 
+# Display scaling for VM
+gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gdk/WindowScalingFactor': <2>}"
+
 # Set Gnome Favorites
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop', 'kali-burpsuite.desktop', 'joplin.desktop', 'com.github.phase1geo.minder.desktop']"
 
