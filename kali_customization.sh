@@ -264,6 +264,7 @@ gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share
 
 # Display scaling for VM
 gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gdk/WindowScalingFactor': <2>}"
+sed -Ei 's/<scale>1<\/scale>/<scale>2<\/scale>' $HOME/.config/monitors.xml
 
 # Set Gnome Favorites
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop', 'kali-burpsuite.desktop', 'joplin.desktop', 'com.github.phase1geo.minder.desktop']"
