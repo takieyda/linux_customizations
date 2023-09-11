@@ -85,6 +85,9 @@ source $ZSH/oh-my-zsh.sh
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R -N '
 
+# Batcat options
+export BAT_THEME="Dracula"
+
 # Man page colors, green mostly -- https://www.shellhacks.com/bash-colors/
 # XTerm 256 colors -- https://unix.stackexchange.com/questions/94498/what-causes-this-green-background-in-ls-output/94505#94505
 # XTerm prefix -- Foreground 38;5;## -- Background 38;5;##
