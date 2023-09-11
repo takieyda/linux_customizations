@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Syntax highlighting using less command from the source-highlight package
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
+export LESS=' -R -N '
 
 # Man page colors, green mostly -- https://www.shellhacks.com/bash-colors/
 # XTerm 256 colors -- https://unix.stackexchange.com/questions/94498/what-causes-this-green-background-in-ls-output/94505#94505
