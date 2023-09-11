@@ -75,6 +75,7 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
+    bat \
     neofetch \
     powerline \
     python-pip-whl \
@@ -99,6 +100,7 @@ git clone https://github.com/dracula/vim.git $HOME/.vim/pack/themes/start/dracul
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
 rsync -ax --exclude-from=$githome/linux_customizations/server_exclude_list.txt $githome/linux_customizations/ $HOME
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
+ln -s /usr/bin/batcat ~/.local/bin/bat  # Link batcat command to juts bat
 
 
 echo -e "${cyan}*****  ${green}Customization complete  ${cyan}*****${nc}"
