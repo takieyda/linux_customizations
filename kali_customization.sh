@@ -108,6 +108,7 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
+    bat \
     beep \
     bloodhound \
     btop \
@@ -261,6 +262,7 @@ mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
 chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
+ln -s /usr/bin/batcat ~/.local/bin/bat  # Link batcat command to juts bat
 
 # Display scaling for VM
 gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gdk/WindowScalingFactor': <2>}"
