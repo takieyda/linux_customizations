@@ -36,9 +36,9 @@ let g:airline_powerline_fonts=1             " Powerline like fonts and symbols
 let g:airline_section_z = airline#section#create(
     \ ['windowswap', '%p%% ', 'linenr','maxlinenr',':%v'])    " 
 let g:airline_theme='dracula'               " Set theme
-set background=dark                         " For compatibility with tmux
+set background=light                        " For compatibility with tmux
 "packadd! dracula
-"colorscheme dracula
+colorscheme dracula
 
 " }}}
 
