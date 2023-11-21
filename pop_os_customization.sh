@@ -94,6 +94,7 @@ echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     bat \
+    btop \
     cowsay \
     dconf-editor \
     gnome-shell-extension-dash-to-panel \
@@ -102,6 +103,7 @@ sudo apt install \
     gnome-sushi \
     gnome-tweaks \
     lolcat \
+    nala \
     neofetch \
     powerline \
     python3-argcomplete \
@@ -110,6 +112,7 @@ sudo apt install \
     source-highlight \
     terminator \
     tmux-plugin-manager \
+    tmux-themepack-jimeh \
     vim-airline \
     vim-airline-themes \
     vim-gtk3 \
