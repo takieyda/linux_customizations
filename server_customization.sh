@@ -76,6 +76,8 @@ echo -e "${cyan}*****  Apt installations  *****${nc}"
 echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     bat \
+    btop \
+    nala \
     neofetch \
     powerline \
     python-pip-whl \
@@ -84,7 +86,9 @@ sudo apt install \
     ranger \
     source-highlight \
     tmux-plugin-manager \
+    tmux-themepack-jimeh \
     vim-airline \
+    vim-airline-themes \
     vim-gtk3 \
     xclip -y
     
