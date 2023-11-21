@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Syntax highlighting using less command from the source-highlight package
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R -N '
+export LESS=' -R '
 
 # Batcat options
 export BAT_THEME="Dracula"
@@ -125,6 +125,10 @@ export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
 alias ip='ip -color=auto'
 alias diff='diff --color=auto'
 alias nmap='sudo nmap'
+
+alias ll='ls -lFh'
+alias la='ls -alFh'
+aliasl='ls -CF'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
