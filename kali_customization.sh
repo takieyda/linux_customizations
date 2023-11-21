@@ -130,6 +130,7 @@ sudo apt install \
     libssl-dev \
     lolcat \
     minder \
+    nala \
     neofetch \
     powerline \
     python3-argcomplete \
@@ -139,6 +140,7 @@ sudo apt install \
     source-highlight \
     terminator \
     tmux-plugin-manager \
+    tmux-themepack-jimeh
     ueberzug \
     vim-airline \
     vim-airline-themes \
