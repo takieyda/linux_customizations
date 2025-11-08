@@ -125,6 +125,7 @@ sudo apt install \
     gnome-sushi \
     gnome-tweaks \
     gobuster \
+	grc \
     joplin \
     libcurl4-openssl-dev \
     libssl-dev \
