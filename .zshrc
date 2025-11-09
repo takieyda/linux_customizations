@@ -75,7 +75,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo grc zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git sudo zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,9 +132,6 @@ aliasl='ls -CF'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# GRC plugin
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh < $TTY
 
 # Disable shared history of terminals
 unsetopt share_history
