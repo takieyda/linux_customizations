@@ -93,6 +93,7 @@ fi
 alias ll='ls -lFh'
 alias la='ls -alFh'
 alias l='ls -CF'
+alias revshells='echo -e "$(cat ~/revshells.txt)"'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

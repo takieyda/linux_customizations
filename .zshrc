@@ -1,5 +1,4 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -128,10 +127,14 @@ alias nmap='sudo nmap'
 
 alias ll='ls -lFh'
 alias la='ls -alFh'
-aliasl='ls -CF'
+alias l='ls -CF'
+alias revshells='echo -e "$(cat ~/revshells.txt)"'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# GRC plugins
+#[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh <$TTY
 
 # Disable shared history of terminals
 unsetopt share_history

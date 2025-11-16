@@ -309,8 +309,8 @@ nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 /usr/share/tmux-plugin-manager/bin/install_plugins
 
 # User theme
-gsettings set org.gnome.shell.extensions.user-theme name "'Kali-Dark'"
-gsettings set org.gnome.desktop.interface gtk-theme "'Mc-OS-Transparent-1.3'"
+dconf write /org/gnome/shell/extensions/user-theme/name "'Mc-OS-CTLina-Gnome-Dark-1.3.2'"
+dconf write /org/gnome/desktop/interface/gtk-theme "'Kali-Purple-Dark'"
 
 # Default terminal
 gsettings set org.gnome.desktop.default-applications.terminal exec "'terminator'"
