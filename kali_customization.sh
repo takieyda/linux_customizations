@@ -117,6 +117,7 @@ sudo apt install \
     chisel \
     cowsay \
     dconf-editor \
+    fastfetch \
     gedit \
     gedit-plugins \
     gnome-shell-extension-arc-menu \
