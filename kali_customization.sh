@@ -270,7 +270,7 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gdk/Windo
 sed -Ei 's/<scale>1<\/scale>/<scale>2<\/scale>' $HOME/.config/monitors.xml
 
 # Set Gnome Favorites
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop', 'kali-burpsuite.desktop', 'joplin.desktop', 'com.github.phase1geo.minder.desktop']"
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox-esr.desktop', 'terminator.desktop', 'org.gnome.gedit.desktop', 'kali-burpsuite.desktop', 'obsidian.desktop', 'com.github.phase1geo.minder.desktop']"
 
 # Custom key bindings -- https://techwiser.com/custom-keyboard-shortcuts-ubuntu/
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
@@ -286,13 +286,14 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.freedesktop.ibus.panel.emoji hotkey []
 
 # Gedit Dracula Theme
-mkdir -p $HOME/.local/share/gedit/styles/
-wget https://raw.githubusercontent.com/dracula/gedit/master/dracula.xml -O $HOME/.local/share/gedit/styles/dracula.xml
-gsettings set org.gnome.gedit.preferences.editor scheme "'dracula'"
+mkdir -p $HOME/.local/share/libgedit-gtksourceview-300/styles/
+wget https://raw.githubusercontent.com/dracula/gedit/master/dracula-46.xml -O $HOME/.local/share/libgedit-gtksourceview-300/styles/dracula.xml
+gsettings set org.gnome.gedit.preferences.editor style-scheme-for-dark-theme-variant "'dracula'"
+gsettings set org.gnome.gedit.preferences.editor style-scheme-for-light-theme-variant "'dracula'"
 
 # VIM Dracula Theme
-mkdir -p ~/.vim/pack/themes/start
-git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
+#mkdir -p ~/.vim/pack/themes/start
+#git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 
 # vim-plug install
 # https://github.com/junegunn/vim-plug
@@ -335,11 +336,11 @@ ext='    },
     "Extensions": {
       "Install": [
         "https://addons.mozilla.org/firefox/downloads/file/3343599/cookie_quick_manager-0.5rc2-an+fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3616824/foxyproxy_standard-7.5.1-an+fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3398269/max_hackbar-4.7-fx.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/4472757/foxyproxy_standard-9.2.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/3826126/maxs_hackbar-4.8.xpi",
         "https://addons.mozilla.org/firefox/downloads/file/898030/gnome_shell_integration-10.1-an+fx-linux.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3384326/http_header_live-0.6.5.2-fx.xpi",
-        "https://addons.mozilla.org/firefox/downloads/file/3618861/wappalyzer-6.2.3-fx.xpi"
+        "https://addons.mozilla.org/firefox/downloads/file/3384326/http_header_live-0.6.5.2.xpi",
+        "https://addons.mozilla.org/firefox/downloads/file/4614269/wappalyzer-6.10.87.xpi"
       ]
     }
   }
@@ -357,7 +358,6 @@ sudo chown root:root $file
 echo -e "\n\n"
 
 
-source $HOME/.bashrc
 
 echo -e "${cyan}*****  ${green}Customization complete  ${cyan}*****${nc}"
 echo -e "${yel}Please review output for any errors!${nc}\n\n"
