@@ -19,7 +19,7 @@ fi
 # Main
 repo_path=$(realpath $1)
 tgt_path=$(realpath $2)
-echo -e "\nComparing Files:
+echo -e "\nComparing Files:"
 echo -e "\033[92mRepository:\033[0m  $repo_path"
 echo -e "\033[92mCompare to:\033[0m $tgt_path"
 echo -e "\n"
@@ -35,9 +35,11 @@ do
 	else
 		echo -e "\033[91mNot found:\033[0m" $file_rel
 		echo -e "\033[1;93m=========================================================\033[0m"
+        continue
 	fi
 	if [ "$diff_out" ]
-	then
+    then
+        echo -e "\033[92m$file_rel\033[0m"
 		echo -e "$diff_out"
 		echo -e "\033[1;93m=========================================================\033[0m"
 	fi

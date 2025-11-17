@@ -38,7 +38,7 @@ let g:airline_section_z = airline#section#create(
 let g:airline_theme='dracula'               " Set theme
 set background=dark                        " For compatibility with tmux
 "packadd! dracula
-colorscheme dracula
+"colorscheme dracula
 
 
 
