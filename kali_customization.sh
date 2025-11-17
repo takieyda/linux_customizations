@@ -114,6 +114,7 @@ sudo apt install \
     beep \
     bloodhound \
     btop \
+    chisel \
     cowsay \
     dconf-editor \
     gedit \
@@ -129,8 +130,11 @@ sudo apt install \
 	grc \
     libcurl4-openssl-dev \
     libssl-dev \
+    ligolo-ng
+    lnav \
     lolcat \
     minder \
+    ncat \
     neofetch \
     obsidian \
     powerline \
@@ -145,6 +149,8 @@ sudo apt install \
     vim-airline-themes \
     vim-gtk3 \
     vinagre \
+    whatweb \
+    wkhtmltopdf \
     wxhexeditor \
     xclip \
     zaproxy -y    
