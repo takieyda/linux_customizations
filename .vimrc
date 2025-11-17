@@ -1,4 +1,5 @@
-" ==========  Vim-Plug settings  ========== {{{
+" ==========  Vim-Plug settings  ========== 
+
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -21,10 +22,9 @@ call plug#begin()
     Plug 'dracula/vim',{'as':'dracula'}
 call plug#end()
 
-" }}}
 
 
-" ==========  Vim-Airline / Theme  ========== {{{
+" ==========  Vim-Airline / Theme  ========== 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -36,17 +36,16 @@ let g:airline_powerline_fonts=1             " Powerline like fonts and symbols
 let g:airline_section_z = airline#section#create(
     \ ['windowswap', '%p%% ', 'linenr','maxlinenr',':%v'])    " 
 let g:airline_theme='dracula'               " Set theme
-set background=light                        " For compatibility with tmux
+set background=dark                        " For compatibility with tmux
 "packadd! dracula
 colorscheme dracula
 
-" }}}
 
 
-" ==========  Basic Settings  ========== {{{
-syntax on                    " Syntax highlighting on
+" ==========  Basic Settings  ========== 
+syntax enable                    " Syntax highlighting on
+highlight Normal ctermbg=NONE" Black background
 filetype plugin indent on    " Filetype detection, syntax highlighting, indenting on
-
 set laststatus=2             " Bottom row always visible
 set number                   " Show line numbers
 set incsearch                " Incremental search, starts search as typed
@@ -63,19 +62,20 @@ autocmd VimResized * wincmd =
 set cursorline               " Horizontal line on screen where cursor issues
 set scrolloff=24             " Keep working line in middle of screen
 
-" }}}
+" Clear highlighting
+map <leader>h :noh<CR>
+" Sudo trick, write file with :w!!
+cmap w!! w !sudo tee > /dev/null %
 
 
-" ==========  VIM Script  ========== {{{
 
+" ==========  VIM Scripts  ========== 
 
-    " ==========  AutoComplPop Settings  ========== {{{
+    " ==========  AutoComplPop Settings  ========== 
     set complete+=kspell
     set completeopt=menuone,preview
-    " }}}
-    
-    
-    " ==========  NERDTree Configuration  ========== {{{
+        
+    " ==========  NERDTree Configuration  ========== 
     nnoremap <silent> <C-k><C-B> :NERDTreeToggle<CR>
     nnoremap <C-k>nf :NERDTreeFind<CR>
     " NERDTree open on vim open
@@ -101,31 +101,22 @@ set scrolloff=24             " Keep working line in middle of screen
             endif
         endif
     endfunction
-    " }}}
     
-    
-    "  ========== IndentGuides  ========== {{{
+    "  ========== IndentGuides  ========== 
     let g:indentguides_spacechar = '▏' "'┆'
     let g:indentguides_tabchar = '|'
     autocmd VimEnter * IndentGuidesToggle
-    " }}}
     
     
-    " ==========  Markdown and Header Folding  ========== {{{
+    " ==========  Markdown and Header Folding  ========== 
     set conceallevel=2
     let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_follow_anchor = 1
-    " }}}
     
-    
-    " ==========  Folding Settings  ========== {{{
+    " ==========  Folding Settings  ========== 
     " This will enable code folding.
     " Use the marker method of folding.
     augroup filetype_vim
         autocmd!
         autocmd FileType vim setlocal foldmethod=marker
     augroup END 
-    
-    " }}}
-    
-" }}}

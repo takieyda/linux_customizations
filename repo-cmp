@@ -1,0 +1,44 @@
+#!/bin/bash
+# Usage warning/message
+if [[ "$#" = 0 || "$*" = "--help" || "$*" = "-h" ]]
+then
+	cat <<EOF
+Repo Compare script
+--------------------
+Performs a diff on the contents of a repository directory to a target directory looking for changed files in the target.
+Note: Ignores files in the .git directory.
+
+Usage:
+
+    repo-cmp <repo_path> <target_compare_path>
+
+EOF
+	exit 1
+fi
+
+# Main
+repo_path=$(realpath $1)
+tgt_path=$(realpath $2)
+echo -e "\nComparing Files:
+echo -e "\033[92mRepository:\033[0m  $repo_path"
+echo -e "\033[92mCompare to:\033[0m $tgt_path"
+echo -e "\n"
+
+readarray -t files < <(find $repo_path -type f -not -path "*/.git/*")
+
+for file in "${files[@]}"
+do
+	file_rel=$(realpath --relative-to=$repo_path $file)
+	if [ -a "$tgt_path/$file_rel" ]
+	then
+		diff_out=$(diff --color=always -u "$tgt_path/$file_rel" "$repo_path/$file_rel")
+	else
+		echo -e "\033[91mNot found:\033[0m" $file_rel
+		echo -e "\033[1;93m=========================================================\033[0m"
+	fi
+	if [ "$diff_out" ]
+	then
+		echo -e "$diff_out"
+		echo -e "\033[1;93m=========================================================\033[0m"
+	fi
+done

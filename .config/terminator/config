@@ -1,6 +1,7 @@
 [global_config]
   always_split_with_profile = True
 [keybindings]
+  help = <Alt>F1
 [profiles]
   [[default]]
     background_darkness = 0.85
@@ -9,9 +10,11 @@
     foreground_color = "#ffffff"
     use_system_font = False
   [[dracula]]
-    background_color = "#282a36"
-    background_darkness = 0.85
+    background_color = "#241f31"
+    background_darkness = 1.0
     background_type = transparent
+    cursor_fg_color = "#241f31"
+    cursor_bg_color = "#f8f8f2"
     font = MesloLGS NF 10
     foreground_color = "#f8f8f2"
     palette = "#262626:#e356a7:#42e66c:#e4f34a:#9b6bdf:#e64747:#75d7ec:#d3d7cf:#7a7a7a:#ff79c6:#50fa7b:#f1fa8c:#bd93f9:#ff5555:#8be9fd:#eeeeec"

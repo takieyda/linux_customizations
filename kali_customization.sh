@@ -53,19 +53,21 @@ echo -e "\n${yel}# ${grn}Removing gnome-games and running apt autoremove.${nc}"
 sudo apt remove gnome-games -y
 sudo apt autoremove -y
 
-echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
-if [ -f /etc/gdm3/daemon.conf ]; then
-    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
-    echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
-elif [ -f /etc/gdm/custom.conf ]; then
-    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
-    echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
-else
-    echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
-    echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
-    ${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
-    ${red}! ${cyan}fix this issue.${nc}"
-fi
+# Testing Wayland compatibility
+
+#echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
+#if [ -f /etc/gdm3/daemon.conf ]; then
+#    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
+#    echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
+#elif [ -f /etc/gdm/custom.conf ]; then
+#    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm/custom.conf
+#    echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
+#else
+#    echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
+#    echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
+#    ${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
+#    ${red}! ${cyan}fix this issue.${nc}"
+#fi
 echo -e "\n\n"
 
 
@@ -124,20 +126,16 @@ sudo apt install \
     gnome-remote-desktop \
     gnome-sushi \
     gnome-tweaks \
-    gobuster \
 	grc \
-    joplin \
     libcurl4-openssl-dev \
     libssl-dev \
     lolcat \
     minder \
-    nala \
     neofetch \
+    obsidian \
     powerline \
     python3-argcomplete \
-    python3-pip \
     ranger \
-    rsync \
     source-highlight \
     terminator \
     tmux-plugin-manager \
@@ -152,7 +150,8 @@ sudo apt install \
     zaproxy -y    
 
 # Recompile wfuzz against OpenSSLb
-pip install --force-reinstall wfuzz
+# Broken, unknown fix at this time
+#pip install --force-reinstall wfuzz
 #sudo pip3 install --uprgade wfuzz
 
 # gnome-shell-extension-proxyswitcher no longer in repo
@@ -169,7 +168,6 @@ sudo usermod -aG beep `whoami`
 # BASH For loops -- https://linuxhint.com/bash_loop_list_strings/
 echo -e "${cyan}*****  GitHub installations  *****${nc}"
 declare -a repos=( \
-    SecureAuthCorp/impacket \
     411Hall/JAWS \
     rebootuser/LinEnum \
     sleventyeleven/linuxprivchecker \
@@ -179,9 +177,12 @@ declare -a repos=( \
     besimorhino/powercat \
     PowerShellMafia/PowerSploit \
     carlospolop/privilege-escalation-awesome-scripts-suite \
-    0x00-0x00/ShellPop \
     absolomb/WindowsEnum \
 )
+
+    # SecureAuthCorp/impacket \
+    # 0x00-0x00/ShellPop \
+
 
 echo -e "${yel}# ${grn}Cloning repos...${nc}"
 for repo in ${repos[@]}
@@ -191,22 +192,22 @@ do
 done
 
 # Impacket
-echo -e "\n${yel}# ${grn}Installing impacket.${nc}"
-cd $githome/impacket
-python3 -m pip install .
-cd - #$curdir  # Set at ln 74
+#echo -e "\n${yel}# ${grn}Installing impacket.${nc}"
+#cd $githome/impacket
+#python3 -m pip install .
+#cd - #$curdir  # Set at ln 74
 
 #ShellPop
-echo -e "\n${yel}# ${grn}Installing ShellPop.${nc}"
-curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o $githome/get-pip.py    # ShellPop installation depends on Python 2 pip for pyperclip
-python $githome/get-pip.py
-python -m pip install --upgrade setuptools
-
-cd $githome/ShellPop
-python -m pip install wheel
-python -m pip install -r requirements.txt
-sudo -E python setup.py install  # Will fail if CWD is not repo root directory
-cd - #$curdir
+#echo -e "\n${yel}# ${grn}Installing ShellPop.${nc}"
+#curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o $githome/get-pip.py    # ShellPop installation depends on Python 2 pip for pyperclip
+#python $githome/get-pip.py
+#python -m pip install --upgrade setuptools
+#
+#cd $githome/ShellPop
+#python -m pip install wheel
+#python -m pip install -r requirements.txt
+#sudo -E python setup.py install  # Will fail if CWD is not repo root directory
+#cd - #$curdir
 echo -e "\n\n"
 
 
@@ -214,17 +215,17 @@ echo -e "\n\n"
 
 # Updog
 echo -e "${cyan}*****  Updog installation  *****${nc}"
-python3 -m pip install updog
+pipx install updog
 echo -e "\n\n"
 
 # AutoRecon
 echo -e "${cyan}*****  AutoRecon installation  *****${nc}"
-python3 -m pip install git+https://github.com/Tib3rius/AutoRecon.git
+pipx install git+https://github.com/Tib3rius/AutoRecon.git
 echo -e "\n\n"
 
 # Evil-WinRM
-echo -e "${cyan}*****  Evil-WinRM installation  *****${nc}"
-sudo -E gem install evil-winrm
+#echo -e "${cyan}*****  Evil-WinRM installation  *****${nc}"
+#sudo -E gem install evil-winrm
 echo -e "\n\n"
 
 
@@ -251,15 +252,12 @@ gnome-extensions enable EasyScreenCast@iacopodeenosee.gmail.com
 echo -e "${yel}# ${grn}Disabling Places Menu.${nc}"
 gnome-extensions disable places-menu@gnome-shell-extensions.gcampax.github.com
 
-echo -e "${yel}# ${grn}Enabling Proxy Switcher.${nc}"
-gnome-extensions enable ProxySwitcher@flannaghan.com
-
 echo -e "\n\n"
 
 
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
-rsync -ax --exclude-from=$githome/linux_customizations/rsync_exclude_list.txt $githome/linux_customizations/ $HOME
+rsync -ax --exclude-from=$githome/linux_customizations/kali_exclude_list.txt $githome/linux_customizations/ $HOME
 mkdir -p $HOME/.local/share/backgrounds
 mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used

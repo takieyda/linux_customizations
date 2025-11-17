@@ -130,6 +130,9 @@ alias la='ls -alFh'
 alias l='ls -CF'
 alias revshells='echo -e "$(cat ~/revshells.txt)"'
 
+setopt magicequalsubst  # enable filename expansion for arguments of the form 'anything=expression'
+setopt promptsubst      # enable command substitution in prompt
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
