@@ -34,11 +34,11 @@ echo -e "${cyan}*****  Checking for the Gnome desktop environment.  *****${nc}\n
 if [ $XDG_CURRENT_DESKTOP != "GNOME" ]; then
     echo -e "${red}! *****  ${cyan}Gnome not found. Most changes in this script are Gnome specific.  ${red}*****${nc}"
 	echo -e "${red}! *****           ${yel}Please install the Gnome desktop environment.            ${red}*****${nc}\n"
-    
+
     while : ; do  # Infinite while loop
 	if [ $SHELL =~ 'zsh' ]; then
-	    read "ans?Do you want to install Gnome now? [Y/n] "
-	else
+        read "ans?Do you want to install Gnome now? [Y/n] "
+    else
             read -n 1 -p "Do you want to install Gnome now? [Y/n] " ans
 	fi
         case $ans in
@@ -117,6 +117,7 @@ sudo apt install \
     chisel \
     cowsay \
     dconf-editor \
+    enum4linux-ng \
     fastfetch \
     gedit \
     gedit-plugins \
@@ -136,7 +137,7 @@ sudo apt install \
     lolcat \
     minder \
     ncat \
-    neofetch \
+    ncdu \
     obsidian \
     powerline \
     python3-argcomplete \
@@ -154,7 +155,7 @@ sudo apt install \
     wkhtmltopdf \
     wxhexeditor \
     xclip \
-    zaproxy -y    
+    zaproxy -y
 
 # Recompile wfuzz against OpenSSLb
 # Broken, unknown fix at this time
@@ -163,7 +164,7 @@ sudo apt install \
 
 # gnome-shell-extension-proxyswitcher no longer in repo
 # Removeed python-pip, added installation of get-pip.py for Python 2.7
-    
+
 # Setup beep command
 echo -e "\n${yel}# ${grn}Configuring and adding ${yel}`whoami` ${grn}to the beep user group.${nc}"
 sudo groupadd --system beep
