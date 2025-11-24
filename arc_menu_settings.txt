@@ -1,6 +1,6 @@
 [/]
 button-icon-padding=10
-custom-menu-button-icon='/home/kali/git/linux_customizations/.face'
+custom-menu-button-icon='/home/kali/git/linux_customizations/arc_menu_icon.svg'
 custom-menu-button-icon-size=32.0
 dtp-dtd-state=[true, false]
 enable-large-icons=false
