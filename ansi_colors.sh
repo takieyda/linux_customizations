@@ -1,0 +1,28 @@
+#!/bin/bash
+
+printf "0;30m\e[0;30m	Black\n"
+printf "\e[0;31m0;31m	Red\n"
+printf "\e[0;32m0;32m	Green\n"
+printf "\e[0;33m0;33m	Yellow\n"
+printf "\e[0;34m0;34m	Blue\n"
+printf "\e[0;35m0;35m	Purple\n"
+printf "\e[0;36m0;36m	Cyan\n"
+printf "\e[0m0;37m\e[0;37m	White\n"
+
+printf "1;30m\e[1;30m	bold Black\n"
+printf "\e[1;31m1;31m	bold Red\n"
+printf "\e[1;32m1;32m	bold Green\n"
+printf "\e[1;33m1;33m	bold Yellow\n"
+printf "\e[1;34m1;34m	bold Blue\n"
+printf "\e[1;35m1;35m	bold Purple\n"
+printf "\e[1;36m1;36m	bold Cyan\n"
+printf "\e[0m0;37m\e[1;37m	bold White\n"
+
+printf "0;90m\e[0;90m	high intensity Black\n"
+printf "\e[0;91m0;91m	high intensity Red\n"
+printf "\e[0;92m0;92m	high intensity Green\n"
+printf "\e[0;93m0;93m	high intensity Yellow\n"
+printf "\e[0;94m0;94m	high intensity Blue\n"
+printf "\e[0;95m0;95m	high intensity Purple\n"
+printf "\e[0;96m0;96m	high intensity Cyan\n"
+printf "\e[0m0;97m\e[0;97m	high intensity White\n"
