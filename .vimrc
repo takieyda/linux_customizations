@@ -18,7 +18,7 @@ call plug#begin()
     Plug 'tommcdo/vim-lion'
     Plug 'thaerkh/vim-indentguides'
     Plug 'scrooloose/nerdtree'
-    Plug 'vim-scripts/AutoComplPop'
+    "Plug 'vim-scripts/AutoComplPop'
     Plug 'dracula/vim',{'as':'dracula'}
 call plug#end()
 
