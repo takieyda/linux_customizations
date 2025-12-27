@@ -62,7 +62,7 @@ autocmd VimResized * wincmd =
 set cursorline               " Horizontal line on screen where cursor issues
 set scrolloff=24             " Keep working line in middle of screen
 
-" Clear highlighting
+" Clear highlighting, leader is \
 map <leader>h :noh<CR>
 " Sudo trick, write file with :w!!
 cmap w!! w !sudo tee > /dev/null %
