@@ -139,8 +139,10 @@ sudo apt install \
     ncat \
     ncdu \
     obsidian \
+	pipx \
     powerline \
     python3-argcomplete \
+	python3-pip \
     ranger \
     source-highlight \
     terminator \
