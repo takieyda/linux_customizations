@@ -90,7 +90,8 @@ sudo apt install \
     vim-airline \
     vim-airline-themes \
     vim-gtk3 \
-    xclip -y
+    xclip 
+    xsel -y
     
 # Vim Dracula theme download
 mkdir -p $HOME/.vim/pack/themes/start/dracula
