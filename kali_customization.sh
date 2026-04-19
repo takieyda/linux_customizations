@@ -157,6 +157,7 @@ sudo apt install \
     wkhtmltopdf \
     wxhexeditor \
     xclip \
+	xsel \
     zaproxy -y
 
 # Recompile wfuzz against OpenSSLb
