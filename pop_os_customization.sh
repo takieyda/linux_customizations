@@ -117,7 +117,8 @@ sudo apt install \
     vim-airline-themes \
     vim-gtk3 \
     wxhexeditor \
-    xclip -y
+    xclip \
+    xsel -y
 
 
 # Install Gnome extensions -- https://linuxconfig.org/install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-20-04-linux
