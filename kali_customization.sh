@@ -129,7 +129,7 @@ sudo apt install \
     gnome-remote-desktop \
     gnome-sushi \
     gnome-tweaks \
-	grc \
+    grc \
     libcurl4-openssl-dev \
     libssl-dev \
     ligolo-ng
@@ -139,10 +139,10 @@ sudo apt install \
     ncat \
     ncdu \
     obsidian \
-	pipx \
+    pipx \
     powerline \
     python3-argcomplete \
-	python3-pip \
+    python3-pip \
     ranger \
     source-highlight \
     terminator \
@@ -157,7 +157,7 @@ sudo apt install \
     wkhtmltopdf \
     wxhexeditor \
     xclip \
-	xsel \
+    xsel \
     zaproxy -y
 
 # Recompile wfuzz against OpenSSLb
