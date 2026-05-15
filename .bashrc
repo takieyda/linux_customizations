@@ -129,7 +129,7 @@ export PATH=$HOME/.local/bin:$PATH
 
 # Syntax highlighting using less command from the source-highlight package
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
+export LESS=' -R -M '
 
 # Man page colors, green mostly -- https://www.shellhacks.com/bash-colors/
 # XTerm 256 colors -- https://unix.stackexchange.com/questions/94498/what-causes-this-green-background-in-ls-output/94505#94505
@@ -141,3 +141,5 @@ export LESS_TERMCAP_so=$'\e[38;5;201m'   # Standout, highlight, magenta
 export LESS_TERMCAP_se=$'\e[0m'          # Standout stop
 export LESS_TERMCAP_us=$'\e[38;5;228;4m' # Underline, bold underline yellow
 export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

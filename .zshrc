@@ -14,7 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,29 +74,84 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo zsh-autosuggestions zsh-syntax-highlighting)
+#plugins=(git sudo zsh-autosuggestions zsh-syntax-highlighting)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Zplug settings
+source /usr/share/zplug/init.zsh
+
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "Aloxaf/fzf-tab"
+zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh
+#zplug "plugins/colored-man-pages", from:oh-my-zsh
+
+if ! zplug check --verbose; then
+    zplug install
+fi
+
+zplug load
+
 # Syntax highlighting using less command from the source-highlight package
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
+export LESS=' -R -M -Dd+r$Du+b '
 
 # Batcat options
 export BAT_THEME="Dracula"
 
+# Zsh complations
+autoload -U compinit && compinit
+
+# Fzf-Tab
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle 'fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
+
+# Fzf
+source <($HOME/.fzf/bin/fzf --zsh)
+
+export FZF_CTRL_R_OPTS=''
+export FZF_CTRL_T_OPTS='--preview "fzf-preview.sh {}"'
+export FZF_ALT_C_OPTS='' #'--preview "fzf-preview.sh {}"'
+export FZF_COMPLETION_OPTS='--preview "fzf-preview.sh {}"'  # Ex: vim ** <tab>
+export FZF_DEFAULT_OPTS='--border --info=inline'
+export FZF_DEFAULT_COMMAND='fd -H --type f'
+
 # Man page colors, green mostly -- https://www.shellhacks.com/bash-colors/
 # XTerm 256 colors -- https://unix.stackexchange.com/questions/94498/what-causes-this-green-background-in-ls-output/94505#94505
 # XTerm prefix -- Foreground 38;5;## -- Background 38;5;##
-export LESS_TERMCAP_mb=$'\e[38;5;51m'    # Blink, cyan
-export LESS_TERMCAP_md=$'\e[38;5;51m'    # Bold start, cyan
-export LESS_TERMCAP_me=$'\e[0m'          # Bold, blink, underline stop
-export LESS_TERMCAP_so=$'\e[38;5;201m'   # Standout, highlight, magenta
-export LESS_TERMCAP_se=$'\e[0m'          # Standout stop
-export LESS_TERMCAP_us=$'\e[38;5;228;4m' # Underline, bold underline yellow
-export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
+#export LESS_TERMCAP_mb=$'\e[38;5;51m'    # Blink, cyan
+#export LESS_TERMCAP_md=$'\e[38;5;51m'    # Bold start, cyan
+#export LESS_TERMCAP_me=$'\e[0m'          # Bold, blink, underline stop
+#export LESS_TERMCAP_so=$'\e[38;5;201m'   # Standout, highlight, magenta
+#export LESS_TERMCAP_se=$'\e[0m'          # Standout stop
+#export LESS_TERMCAP_us=$'\e[38;5;228;4m' # Underline, bold underline yellow
+#export LESS_TERMCAP_ue=$'\e[0m'          # Underline stop
+
+# Enable colored man pages
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # Green blink (start)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # Cyan bold (headings)
+export LESS_TERMCAP_me=$(tput sgr0)               # Reset (end)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # Yellow on blue (status line)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)    # Reset (end of so)
+export LESS_TERMCAP_us=$(tput smul; tput setaf 7) # White underline (subheadings)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)    # Reset (end of underline)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
+export GROFF_NO_SGR=1                             # Important for konsole and gnome-terminal
+
+# Finally, set the LESS options for general less behavior
+#export LESS='-R --use-color -Dd+r$Du+b'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -141,3 +196,5 @@ setopt promptsubst      # enable command substitution in prompt
 
 # Disable shared history of terminals
 unsetopt share_history
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

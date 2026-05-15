@@ -9,7 +9,7 @@ for i in `ls ~/git/`; do
     echo -e "\n\e[1;33m# \e[0;32mUpdating \e[1;33m$i\e[0m"
     cd $i
     git fetch
-    git merge origin master
+    git merge origin/master
     cd - 1>/dev/null
 done
 
