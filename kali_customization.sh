@@ -119,6 +119,7 @@ sudo apt install \
     dconf-editor \
     enum4linux-ng \
     fastfetch \
+    fd-find \
     gedit \
     gedit-plugins \
     gnome-shell-extension-arc-menu \
@@ -147,10 +148,8 @@ sudo apt install \
     source-highlight \
     terminator \
     tmux-plugin-manager \
-    tmux-themepack-jimeh
+    tmux-themepack-jimeh \
     ueberzug \
-    vim-airline \
-    vim-airline-themes \
     vim-gtk3 \
     vinagre \
     whatweb \
@@ -158,7 +157,8 @@ sudo apt install \
     wxhexeditor \
     xclip \
     xsel \
-    zaproxy -y
+    zaproxy \
+    zplug -y
 
 # Recompile wfuzz against OpenSSLb
 # Broken, unknown fix at this time
@@ -191,8 +191,8 @@ declare -a repos=( \
     absolomb/WindowsEnum \
 )
 
-    # SecureAuthCorp/impacket \
-    # 0x00-0x00/ShellPop \
+#    SecureAuthCorp/impacket \
+#    0x00-0x00/ShellPop \
 
 
 echo -e "${yel}# ${grn}Cloning repos...${nc}"
@@ -223,6 +223,14 @@ echo -e "\n\n"
 
 
 # Other installs
+
+# Fzf
+echo -e "${cyan}*****  Fzf installation  *****${nc}"
+git clone https://github.com/juengunn/fzf $HOME/.fzf
+
+# FD-Find
+echo -e "${cyan}*****  FD Symlink  *****${nc}"
+ln -s $(which fdfind) $HOME/.local/bin/fd
 
 # Updog
 echo -e "${cyan}*****  Updog installation  *****${nc}"
@@ -274,7 +282,7 @@ mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
 chmod +x $HOME/Desktop/mount-shared-folders $HOME/Desktop/restart-vm-tools
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/kali_wallpaper.png  # Set wallpaper
-ln -s /usr/bin/batcat ~/.local/bin/bat  # Link batcat command to juts bat
+ln -s /usr/bin/batcat $HOME/.local/bin/bat  # Link batcat command to juts bat
 
 # Display scaling for VM
 gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gdk/WindowScalingFactor': <2>}"
