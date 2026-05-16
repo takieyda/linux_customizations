@@ -120,7 +120,7 @@ export FZF_CTRL_R_OPTS=''
 export FZF_CTRL_T_OPTS='--preview "fzf-preview.sh {}"'
 export FZF_ALT_C_OPTS='' #'--preview "fzf-preview.sh {}"'
 export FZF_COMPLETION_OPTS='--preview "fzf-preview.sh {}"'  # Ex: vim ** <tab>
-export FZF_DEFAULT_OPTS='--border --info=inline'
+export FZF_DEFAULT_OPTS='--border --info=inline --highlight-line'
 export FZF_DEFAULT_COMMAND='fd -H --type f'
 
 # Man page colors, green mostly -- https://www.shellhacks.com/bash-colors/
@@ -184,6 +184,7 @@ alias ll='ls -lFh'
 alias la='ls -alFh'
 alias l='ls -CF'
 alias revshells='echo -e "$(cat ~/revshells.txt)"'
+alias fzf='fzf --preview "fzf-preview.sh {}"'
 
 setopt magicequalsubst  # enable filename expansion for arguments of the form 'anything=expression'
 setopt promptsubst      # enable command substitution in prompt
