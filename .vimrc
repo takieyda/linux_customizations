@@ -25,6 +25,7 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'kien/rainbow_parentheses.vim'
+    Plug 'christoomey/vim-tmux-navigator'
     "Plug 'vim-scripts/AutoComplPop'
     Plug 'dracula/vim',{'as':'dracula'}
 call plug#end()
@@ -86,10 +87,11 @@ augroup Resize
     autocmd VimResized * wincmd =|
 augroup END
 
+" Keybinds
 map <leader>h :noh<CR>|  " Clear highlighting, leader is \
 cmap w!! w !sudo tee > /dev/null %|  " Sudo trick, write file with :w!!
-nnoremap <C-O> :Files<CR>|  " fzf open files
-nnoremap <C-L> :Buffers<cr>|  " fzf open buffers
+nnoremap <leader>o :Files<CR>|  " fzf open files
+nnoremap <leader>l :Buffers<cr>|  " fzf open buffers
 
 
 
