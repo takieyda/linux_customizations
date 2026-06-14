@@ -122,6 +122,7 @@ sudo apt install \
 # Fzf
 echo -e "${cyan}*****  Fzf installation  *****${nc}"
 git clone https://github.com/junegunn/fzf $HOME/.fzf
+$HOME/.fzf/install
 
 # FD-Find
 echo -e "${cyan}*****  FD Symlink  *****${nc}"
