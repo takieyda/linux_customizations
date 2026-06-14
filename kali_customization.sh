@@ -221,7 +221,7 @@ echo -e "\n\n"
 
 # Fzf
 echo -e "${cyan}*****  Fzf installation  *****${nc}"
-git clone https://github.com/juengunn/fzf $HOME/.fzf
+git clone https://github.com/junegunn/fzf $HOME/.fzf
 
 # FD-Find
 echo -e "${cyan}*****  FD Symlink  *****${nc}"
