@@ -29,19 +29,19 @@ echo -e "\n\n${yel}# ${cyan}*****  ${yel}Please remember to change your password
 echo -e "\n\n"
 
 # Desktop environment check
-echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
-if [ -f /etc/gdm3/daemon.conf ]; then
-    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
-    echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
-elif [ -f /etc/gdm3/custom.conf ]; then
-    sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/custom.conf
-    echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
-else
-    echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
-    echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
-${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
-${red}! ${cyan}fix this issue.${nc}"
-fi
+# echo -e "\n${cyan}*****  Changing GDM login screen to use X11.  *****${nc}"
+# if [ -f /etc/gdm3/daemon.conf ]; then
+#     sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/daemon.conf
+#     echo -e "${yel}# ${grn}/etc/gdm3/daemon.conf modified.${nc}"
+# elif [ -f /etc/gdm3/custom.conf ]; then
+#     sudo -E sed -iE 's/^\#?\s?WaylandEnable=\s?true/WaylandEnable=false/' /etc/gdm3/custom.conf
+#     echo -e "${yel}# ${grn}/etc/gdm/custom.conf modified.${nc}"
+# else
+#     echo -e "${red}! *****  ${cyan}GDM configuration file not found.  ${red}*****${nc}"
+#     echo -e "${red}! ${cyan}A black screen may appear to the user when using VMware Workstation and Wayland.
+# ${red}! ${cyan}Please check for these files and manually edit them to disable Wayland to
+# ${red}! ${cyan}fix this issue.${nc}"
+# fi
 echo -e "\n\n"
 
 
@@ -52,11 +52,6 @@ if [ ! -d $HOME/git ]; then
     mkdir $HOME/git
 else
     echo -e "${yel}# ${grn}$HOME/git already exists.${nc}"
-fi
-if [ ! -d /git ]; then
-    sudo ln -s $HOME/git /git
-else
-    echo -e "${yel}# ${grn}Symlink /git to $HOME/git already exists.${nc}"
 fi
 declare githome=$HOME/git
 git clone https://github.com/takieyda/linux_customizations $githome/linux_customizations
@@ -82,9 +77,9 @@ if [ ! -d $HOME/.oh-my-zsh ]; then
 else
     echo -e "${yel}# ${grn}Oh My Zsh already installed.${nc}"
 fi
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sudo chsh --shell /usr/bin/zsh `whoami`
 echo -e "\n\n"
 
@@ -97,14 +92,15 @@ sudo apt install \
     btop \
     cowsay \
     dconf-editor \
+    fd-find \
     gnome-shell-extension-dash-to-panel \
     gnome-shell-extension-desktop-icons-ng \
     gnome-shell-extensions \
     gnome-sushi \
     gnome-tweaks \
     lolcat \
-    nala \
     neofetch \
+    pipx \
     powerline \
     python3-argcomplete \
     python3-pip \
@@ -113,12 +109,23 @@ sudo apt install \
     terminator \
     tmux-plugin-manager \
     tmux-themepack-jimeh \
-    vim-airline \
-    vim-airline-themes \
+    ueberzug \
     vim-gtk3 \
     wxhexeditor \
     xclip \
-    xsel -y
+    xsel \
+    zplug -y
+
+
+# Other installs
+
+# Fzf
+echo -e "${cyan}*****  Fzf installation  *****${nc}"
+git clone https://github.com/juengunn/fzf $HOME/.fzf
+
+# FD-Find
+echo -e "${cyan}*****  FD Symlink  *****${nc}"
+ln -s $(which fdfind) $HOME/.local/bin/fd
 
 
 # Install Gnome extensions -- https://linuxconfig.org/install-gnome-shell-extensions-from-zip-file-using-command-line-on-ubuntu-20-04-linux
@@ -148,7 +155,7 @@ echo -e "\n\n"
 
 # Copy dotfiles to $HOME
 echo -e "${cyan}*****  Copying dotfiles and Configuration  *****${nc}"
-rsync -ax --exclude-from=$githome/linux_customizations/pop_os_exclude_list.txt $githome/linux_customizations/ $HOME
+rsync -ax --exclude-from=$githome/linux_customizations/linux_exclude_list.txt $githome/linux_customizations/ $HOME
 # mkdir -p $HOME/.local/share/backgrounds
 # mv $HOME/kali_wallpaper.png $HOME/.local/share/backgrounds/
 sudo -E cp $HOME/.vimrc /root  # To ensure VIM looks/works the same when sudo vim is used
@@ -181,8 +188,8 @@ wget https://raw.githubusercontent.com/dracula/gedit/master/dracula.xml -O $HOME
 gsettings set org.gnome.gedit.preferences.editor scheme "'dracula'"
 
 # VIM Dracula Theme
-mkdir -p ~/.vim/pack/themes/start
-git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
+# mkdir -p ~/.vim/pack/themes/start
+# git clone https://github.com/dracula/vim.git ~/.vim/pack/themes/start/dracula
 
 # tmux-plugin-manager plugins install
 # https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.
@@ -199,6 +206,7 @@ gsettings set org.gnome.desktop.default-applications.terminal exec-arg "'-x'"
 
 # Automatic screen lock
 gsettings set org.gnome.desktop.screensaver lock-enabled "false"
+gsettings set org.gnome.desktop.session idle-delay "uint32 0"
 echo -e "\n"
 
 # Arc Menu and Dash to Panel customization -- https://developer.gnome.org/dconf/unstable/dconf-tool.html

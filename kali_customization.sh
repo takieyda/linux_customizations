@@ -79,11 +79,6 @@ if [ ! -d $HOME/git ]; then
 else
     echo -e "${yel}# ${grn}$HOME/git already exists.${nc}"
 fi
-if [ ! -d /git ]; then
-    sudo ln -s $HOME/git /git
-else
-    echo -e "${yel}# ${grn}Symlink /git to $HOME/git already exists.${nc}"
-fi
 declare githome=$HOME/git
 git clone https://github.com/takieyda/linux_customizations $githome/linux_customizations
 echo -e "${cyan}User:\t ${yel}`whoami`"
@@ -99,9 +94,9 @@ if [ ! -d $HOME/.oh-my-zsh ]; then
 else
     echo -e "${yel}# ${grn}Oh My Zsh already installed.${nc}"
 fi
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sudo chsh --shell /usr/bin/zsh kali
 echo -e "\n\n"
 
@@ -317,10 +312,10 @@ gsettings set org.gnome.gedit.preferences.editor style-scheme-for-light-theme-va
 # vim-plug install
 # https://github.com/junegunn/vim-plug
 # https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -es -u ~/.vimrc -i NONE -c "PlugInstall" -c "qa"
-nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+# curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# vim -es -u ~/.vimrc -i NONE -c "PlugInstall" -c "qa"
+# nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
 # tmux-plugin-manager plugins install
 # https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.

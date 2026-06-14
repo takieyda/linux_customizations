@@ -36,11 +36,6 @@ if [ ! -d $HOME/git ]; then
 else
     echo -e "${yel}# ${grn}$HOME/git already exists.${nc}"
 fi
-if [ ! -d /git ]; then
-    sudo ln -s $HOME/git /git
-else
-    echo -e "${yel}# ${grn}Symlink /git to $HOME/git already exists.${nc}"
-fi
 declare githome=$HOME/git
 git clone https://github.com/takieyda/linux_customizations $githome/linux_customizations
 echo -e "${cyan}User:\t ${yel}`whoami`"
@@ -53,7 +48,7 @@ echo -e "\n\n"
 echo -e "${cyan}*****  Oh My Zsh setup  *****${nc}"
 if [ ! -f /bin/zsh ]; then
     sudo apt install zsh -y
- fi
+fi
 if [ ! -d $HOME/.oh-my-zsh ]; then
     # Have to manually exit zsh to continue
     # echo -e "\n\n${yel}# ${cyan}*****  Type ${yel}exit${cyan} after Zsh loads to continue script  *****${nc}"
@@ -64,9 +59,9 @@ if [ ! -d $HOME/.oh-my-zsh ]; then
 else
     echo -e "${yel}# ${grn}Oh My Zsh already installed.${nc}"
 fi
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sudo chsh --shell /bin/zsh $USER
 echo -e "\n\n"
 
@@ -77,7 +72,7 @@ echo -e "\n${yel}# ${grn}Performing Apt Install.${nc}"
 sudo apt install \
     bat \
     btop \
-    nala \
+    fd-find \
     neofetch \
     powerline \
     python-pip-whl \
@@ -90,12 +85,25 @@ sudo apt install \
     vim-airline \
     vim-airline-themes \
     vim-gtk3 \
-    xclip 
-    xsel -y
-    
+    xclip \
+    xsel \
+    zplug -y
+
+
+# Other installs
+
+# Fzf
+echo -e "${cyan}*****  Fzf installation  *****${nc}"
+git clone https://github.com/juengunn/fzf $HOME/.fzf
+
+# FD-Find
+echo -e "${cyan}*****  FD Symlink  *****${nc}"
+ln -s $(which fdfind) $HOME/.local/bin/fd
+
+
 # Vim Dracula theme download
-mkdir -p $HOME/.vim/pack/themes/start/dracula
-git clone https://github.com/dracula/vim.git $HOME/.vim/pack/themes/start/dracula
+# mkdir -p $HOME/.vim/pack/themes/start/dracula
+# git clone https://github.com/dracula/vim.git $HOME/.vim/pack/themes/start/dracula
 
 # tmux-plugin-manager plugins install
 # https://www.seanh.cc/2020/12/27/copy-and-paste-in-tmux/#:~:text=In%20tmux%20Ctrl%20%2B%20b%20%5B%20enters%20copy,copy%20mode%20and%20scrolls%20up%20by%20one%20page.
