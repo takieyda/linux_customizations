@@ -101,7 +101,7 @@ zplug load
 
 # Syntax highlighting using less command from the source-highlight package
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R -M -Dd+r$Du+b '
+export LESS=' -R -M -Dd+r$Du+b +Gg'
 
 # Batcat options
 export BAT_THEME="Dracula"
@@ -185,6 +185,7 @@ alias la='ls -alFh'
 alias l='ls -CF'
 alias revshells='echo -e "$(cat ~/revshells.txt)"'
 alias fzf='fzf --preview "fzf-preview.sh {}"'
+alias penelope='penelope -O'
 
 setopt magicequalsubst  # enable filename expansion for arguments of the form 'anything=expression'
 setopt promptsubst      # enable command substitution in prompt

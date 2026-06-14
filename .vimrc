@@ -17,7 +17,7 @@ augroup END
 " Plugin list
 call plug#begin()
     Plug 'godlygeek/tabular'
-    Plug 'preservim/vim-markdown'
+"    Plug 'preservim/vim-markdown'
     Plug 'tommcdo/vim-lion'
     Plug 'thaerkh/vim-indentguides'
     Plug 'junegunn/fzf'
@@ -44,6 +44,7 @@ augroup ColorChanges
                 \ term=underline cterm=underline gui=underline
                 \ ctermbg=NONE guibg=NONE
     highlight CursorLine guibg=NONE
+    highlight Folded guibg=NONE
 augroup END
 
 
@@ -67,7 +68,7 @@ let g:airline_theme='dracula'               " Set theme
 syntax enable                    " Syntax highlighting on
 filetype plugin indent on    " Filetype detection, syntax highlighting, indenting on
 set laststatus=2             " Bottom row always visible
-set number                   " Show line numbers
+set number relativenumber    " Show line numbers
 set incsearch                " Incremental search, starts search as typed
 set hlsearch                 " Highlight search, highlights matching results
 set expandtab                " Tab replacedwith  the appropriate number of spaces
@@ -103,21 +104,21 @@ nnoremap <leader>l :Buffers<cr>|  " fzf open buffers
     let g:indentguides_toggleListMode = 0
 
     " ==========  Markdown and Header Folding  ==========
-    set conceallevel=2
+    set conceallevel=3
     let g:vim_markdown_folding_style_pythonic = 1
     let g:vim_markdown_follow_anchor = 1
 
     " ==========  Folding Settings  ==========
-    " This will enable code folding.
-    " Use the marker method of folding.
+    " This will enable code folding. zo/zR to open/all, zc/zM clost/all
+    " Use the marker method of folding. {{{,}}} fold markers
     augroup filetype_vim
         autocmd!
         autocmd FileType vim setlocal foldmethod=marker
     augroup END
-
+    
     " ==========  Rainbow Parentheses  ==========
     augroup RainbowParens
         autocmd!
         autocmd VimEnter * RainbowParenthesesToggleAll
-        autocmd VimEnter * RainbowParenthesesLoadChevron
+        autocmd Syntax * RainbowParenthesesLoadChevron
     augroup END
