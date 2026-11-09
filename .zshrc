@@ -101,7 +101,7 @@ zplug load
 
 # Syntax highlighting using less command from the source-highlight package
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R -M -Dd+r$Du+b +Gg'
+export LESS='-R -M -Dd+r$Du+b +Gg'
 
 # Batcat options
 export BAT_THEME="Dracula"
